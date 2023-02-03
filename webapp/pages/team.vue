@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout>
-    <h1>Über mich</h1>
+    <h1>Das Team</h1>
     <p>This is the about page</p>
+    <br>
+    <TeamMember />
   </NuxtLayout>
 </template>
