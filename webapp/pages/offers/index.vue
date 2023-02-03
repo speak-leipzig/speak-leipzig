@@ -11,6 +11,17 @@ const items = [
 
 <template>
   <NuxtLayout name="threecols">
+    <h1>Offer</h1>
+    <p>This is the offer page</p>
+    <v-row class="my-2" width="100%">
+      <v-col cols="12" sm="12" md="6" lg="4"
+        v-for="i in 10"
+        :key="i"
+      >
+        <OfferCard :id="i.toString()" />
+      </v-col>
+    </v-row>
+
     <template #left>
       <v-list density="compact">
         <v-list-subheader>Level</v-list-subheader>
@@ -35,15 +46,32 @@ const items = [
         </v-list-item>
       </v-list>
     </template>
-    <h1>Offer</h1>
-    <p>This is the offer page</p>
-    <v-row class="my-2" width="100%">
-      <v-col cols="12" sm="12" md="6" lg="4"
-        v-for="i in 10"
-        :key="i"
-      >
-        <OfferCard :id="i.toString()" />
-      </v-col>
-    </v-row>
+
+    <template #right>
+      <v-list density="compact">
+        <v-list-subheader>Einrichtungen</v-list-subheader>
+
+        <v-list-item
+          v-for="i in 3"
+          :key="i"
+          active-color="primary"
+          @click=""
+        >
+          <template v-slot:prepend>
+            <v-avatar color="grey">
+            </v-avatar>
+          </template>
+
+          <v-list-item-title>Einrichtung {{i}}</v-list-item-title>
+          <template v-slot:append>
+            <v-chip
+              color="grey-darken-1 mx-2"
+              text-color="white"
+              label>{{ i }}</v-chip>
+          </template>
+        </v-list-item>
+      </v-list>
+    </template>
+
   </NuxtLayout>
 </template>

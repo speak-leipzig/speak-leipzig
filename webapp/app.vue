@@ -22,6 +22,9 @@ const router = useRouter();
         <v-tab @click="router.push('/offers')">
           Angebot
         </v-tab>
+        <v-tab @click="router.push('/facilities')">
+          Einrichtungen
+        </v-tab>
         <v-tab @click="router.push('/team')">
           Team
         </v-tab>
