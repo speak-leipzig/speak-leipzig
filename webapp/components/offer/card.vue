@@ -1,14 +1,25 @@
+<script setup>
+const router = useRouter()
+const props = defineProps({
+  id : {
+    type: String,
+    required: true
+  }
+})
+</script>
+
+
 <template>
   <v-card
     class="mx-auto py-2"
     outlined
     max-width="400px"
     elevation="4"
-    @click="console.log('clicked')"
+    @click="router.push(`/offers/${props.id}`)"
   >
     <v-card-title class="d-flex justify-space-between">
       <span class="headline">
-        Kurs xyz
+        Kurs {{ props.id }}
       </span>
       <v-spacer></v-spacer>
       <v-chip
@@ -25,7 +36,7 @@
           </v-tooltip>
       </v-chip>
       <v-avatar
-        image="img/vitti.png"
+        image="/img/vitti.png"
         size="32"
       ></v-avatar>
     </v-card-title>

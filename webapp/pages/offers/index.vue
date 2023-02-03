@@ -42,7 +42,7 @@ const items = [
         v-for="i in 10"
         :key="i"
       >
-        <OfferCard  />
+        <OfferCard :id="i.toString()" />
       </v-col>
     </v-row>
   </NuxtLayout>
