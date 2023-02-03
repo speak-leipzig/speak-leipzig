@@ -54,6 +54,7 @@ const items = [
         <v-list-item
           v-for="i in 3"
           :key="i"
+          class="my-2"
           active-color="primary"
           @click=""
         >
