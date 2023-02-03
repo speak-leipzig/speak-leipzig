@@ -48,7 +48,7 @@ const items = [
     </template>
 
     <template #right>
-      <v-list density="compact">
+      <v-list density="compact" class="ma-1">
         <v-list-subheader>Einrichtungen</v-list-subheader>
 
         <v-list-item
