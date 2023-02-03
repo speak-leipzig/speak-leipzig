@@ -24,7 +24,7 @@ const router = useRouter()
                     image="/img/vitti.png"
                     size="32"
                   ></v-avatar>
-                  <v-chip>Vitaliia Sarvirova</v-chip>
+                  <v-chip @click="router.push('/team')">Vitaliia Sarvirova</v-chip>
                 </span>
               </v-list-item-title>
             </v-list-item>
