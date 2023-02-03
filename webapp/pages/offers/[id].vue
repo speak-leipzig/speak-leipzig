@@ -31,7 +31,7 @@ const router = useRouter()
             <v-list-item>
               <v-list-item-title>
                 <v-icon class="mr-4">mdi-account-group</v-icon>
-                2 Teilnehmer
+                max. 8 Teilnehmer
               </v-list-item-title>
             </v-list-item>
             <v-list-item>
@@ -49,7 +49,7 @@ const router = useRouter()
             <v-list-item>
               <v-list-item-title>
                 <v-icon class="mr-4">mdi-cash-multiple</v-icon>
-                2 €
+                8 €
               </v-list-item-title>
             </v-list-item>
           </v-list>
