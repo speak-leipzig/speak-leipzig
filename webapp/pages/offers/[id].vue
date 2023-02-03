@@ -17,57 +17,47 @@ const router = useRouter()
         <v-card-text>
           <v-list class="ml-n2">
             <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <span>
-                    <v-avatar
-                      class="mr-2"
-                      image="/img/vitti.png"
-                      size="32"
-                    ></v-avatar>
-                    <v-chip>Vitaliia Sarvirova</v-chip>
-                  </span>
-                </v-list-item-title>
-              </v-list-item-content>
+              <v-list-item-title>
+                <span>
+                  <v-avatar
+                    class="mr-2"
+                    image="/img/vitti.png"
+                    size="32"
+                  ></v-avatar>
+                  <v-chip>Vitaliia Sarvirova</v-chip>
+                </span>
+              </v-list-item-title>
             </v-list-item>
             <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-account-group</v-icon>
-                  2 Teilnehmer
-                </v-list-item-title>
-              </v-list-item-content>
+              <v-list-item-title>
+                <v-icon class="mr-4">mdi-account-group</v-icon>
+                2 Teilnehmer
+              </v-list-item-title>
             </v-list-item>
             <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-calendar</v-icon>
-                  01.01.2021
-                </v-list-item-title>
-              </v-list-item-content>
+              <v-list-item-title>
+                <v-icon class="mr-4">mdi-calendar</v-icon>
+                01.01.2021
+              </v-list-item-title>
             </v-list-item>
             <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-clock</v-icon>
-                  19:00 - 20:00
-                </v-list-item-title>
-              </v-list-item-content>
+              <v-list-item-title>
+                <v-icon class="mr-4">mdi-clock</v-icon>
+                19:00 - 20:00
+              </v-list-item-title>
             </v-list-item>
             <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-cash-multiple</v-icon>
-                  2 €
-                </v-list-item-title>
-              </v-list-item-content>
+              <v-list-item-title>
+                <v-icon class="mr-4">mdi-cash-multiple</v-icon>
+                2 €
+              </v-list-item-title>
             </v-list-item>
           </v-list>
         </v-card-text>
       </v-card>
     </template>
     <template #right>
-      <v-card elevation="0" @click="router.push()">
+      <v-card elevation="0" rounded="5" @click="router.push()">
         <v-img
             class="bg-white"
             rounded="lg"
