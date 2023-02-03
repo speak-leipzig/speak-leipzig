@@ -1,11 +1,13 @@
 <script setup>
 
+const router = useRouter()
+
 const mail = 'vita@....de'
 
 </script>
 
 <template>
-  <v-card elevation="5">
+  <v-card elevation="5" @click="router.push(`/team/vita`)" >
     <div class="d-flex justify-space-between" >
       <div>
         <v-card-title class="mt-2">
