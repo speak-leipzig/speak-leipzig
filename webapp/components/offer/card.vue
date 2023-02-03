@@ -42,13 +42,13 @@ const props = defineProps({
     </v-card-title>
     <v-card-subtitle class="d-flex justify-start">
       
-      <LittlesChip tooltip="Level: B2">
+      <WrapperChip tooltip="Level: B2">
         B2
-      </LittlesChip>
+      </WrapperChip>
 
-      <LittlesChip tooltip="in Präsenz">
+      <WrapperChip tooltip="in Präsenz">
         <v-icon>mdi-account-group</v-icon>
-      </LittlesChip>
+      </WrapperChip>
       
     </v-card-subtitle>
   <v-card-text>

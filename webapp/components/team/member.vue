@@ -20,10 +20,10 @@ const mail = 'vita@....de'
           <v-list-item>
             <v-list-item-title>
               <v-icon class="mr-4">mdi-translate</v-icon>
-              <LittlesChip tooltip="Німецький">Deutsch</LittlesChip>
-              <LittlesChip tooltip="англійська">Englisch</LittlesChip>
-              <LittlesChip tooltip="українська">українська</LittlesChip>
-              <LittlesChip tooltip="русский">русский</LittlesChip>
+              <WrapperChip tooltip="Німецький">Deutsch</WrapperChip>
+              <WrapperChip tooltip="англійська">Englisch</WrapperChip>
+              <WrapperChip tooltip="українська">українська</WrapperChip>
+              <WrapperChip tooltip="русский">русский</WrapperChip>
             </v-list-item-title>
           </v-list-item>
           <v-list-item>
