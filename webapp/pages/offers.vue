@@ -1,11 +1,11 @@
 <script setup>
 const items = [
-  { text: 'A1', icon: 'mdi-translate' },
-  { text: 'A2', icon: 'mdi-translate' },
-  { text: 'B1', icon: 'mdi-translate' },
-  { text: 'B2', icon: 'mdi-translate' },
-  { text: 'C1', icon: 'mdi-translate' },
-  { text: 'C2', icon: 'mdi-translate' },
+  { text: 'A1', icon: 'mdi-translate', count: 0 },
+  { text: 'A2', icon: 'mdi-translate', count: 0 },
+  { text: 'B1', icon: 'mdi-translate', count: 0 },
+  { text: 'B2', icon: 'mdi-translate', count: 10 },
+  { text: 'C1', icon: 'mdi-translate', count: 0 },
+  { text: 'C2', icon: 'mdi-translate', count: 0 },
 ]
 </script>
 
@@ -26,6 +26,12 @@ const items = [
           </template>
 
           <v-list-item-title v-text="item.text"></v-list-item-title>
+          <template v-if="item.count > 0" v-slot:append>
+            <v-chip
+              color="grey-darken-1 mx-2"
+              text-color="white"
+              label>{{ item.count }}</v-chip>
+          </template>
         </v-list-item>
       </v-list>
     </template>
