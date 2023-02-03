@@ -10,13 +10,13 @@ const route = useRoute()
         image="/img/vitti.png"
       ></v-avatar>
       <h1>Vitaliia Sarvirova</h1>
-      <p>This is the team member page</p>
+      <h3>Leitung</h3>
     </div>
     <br>
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse at excepturi quidem labore tempora enim eaque. Ex cumque dicta veritatis cum nulla, eveniet magni asperiores non vero nemo, voluptate earum?</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse at excepturi quidem labore tempora enim eaque. Ex cumque dicta veritatis cum nulla, eveniet magni asperiores non vero nemo, voluptate earum?</p>
     <br>
     <h2>Lebenslauf</h2>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse at excepturi quidem labore tempora enim eaque. Ex cumque dicta veritatis cum nulla, eveniet magni asperiores non vero nemo, voluptate earum?</p>
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse at excepturi quidem labore tempora enim eaque. Ex cumque dicta veritatis cum nulla, eveniet magni asperiores non vero nemo, voluptate earum?</p>
     <template #left>
       <v-list density="compact">
