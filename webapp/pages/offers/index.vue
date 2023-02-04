@@ -1,11 +1,11 @@
 <script setup>
 const items = [
-  { text: 'A1', icon: 'mdi-translate', count: 0 },
-  { text: 'A2', icon: 'mdi-translate', count: 0 },
-  { text: 'B1', icon: 'mdi-translate', count: 0 },
-  { text: 'B2', icon: 'mdi-translate', count: 10 },
-  { text: 'C1', icon: 'mdi-translate', count: 0 },
-  { text: 'C2', icon: 'mdi-translate', count: 0 },
+  { text: 'A1', icon: 'mdi-license', count: 0 },
+  { text: 'A2', icon: 'mdi-license', count: 0 },
+  { text: 'B1', icon: 'mdi-license', count: 0 },
+  { text: 'B2', icon: 'mdi-license', count: 10 },
+  { text: 'C1', icon: 'mdi-license', count: 0 },
+  { text: 'C2', icon: 'mdi-license', count: 0 },
 ]
 </script>
 
@@ -33,7 +33,7 @@ const items = [
           active-color="primary"
         >
           <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
+            <v-icon icon="mdi-license"></v-icon>
           </template>
 
           <v-list-item-title v-text="item.text"></v-list-item-title>

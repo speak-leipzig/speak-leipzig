@@ -48,7 +48,7 @@ const router = useRouter()
             </v-list-item>
             <v-list-item>
               <v-list-item-title>
-                <v-icon class="mr-4">mdi-cash-multiple</v-icon>
+                <v-icon class="mr-4">mdi-cash</v-icon>
                 8 €
               </v-list-item-title>
             </v-list-item>
