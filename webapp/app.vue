@@ -30,6 +30,7 @@ const router = useRouter();
         </v-tab>
       </v-tabs>
       <v-spacer></v-spacer>
+      <SetLang />
     </v-app-bar>
 
     <v-main class="bg-grey-lighten-3">
