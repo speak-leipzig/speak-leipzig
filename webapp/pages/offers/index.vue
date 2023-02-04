@@ -1,11 +1,11 @@
 <script setup>
 const items = [
-  { text: 'A1', icon: 'mdi-license', count: 0 },
-  { text: 'A2', icon: 'mdi-license', count: 0 },
-  { text: 'B1', icon: 'mdi-license', count: 0 },
-  { text: 'B2', icon: 'mdi-license', count: 10 },
-  { text: 'C1', icon: 'mdi-license', count: 0 },
-  { text: 'C2', icon: 'mdi-license', count: 0 },
+  { text: 'A1', count: 0 },
+  { text: 'A2', count: 0 },
+  { text: 'B1', count: 0 },
+  { text: 'B2', count: 10 },
+  { text: 'C1', count: 0 },
+  { text: 'C2', count: 0 },
 ]
 </script>
 
