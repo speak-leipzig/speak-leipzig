@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
   i18n: {
-    locales: ['de', 'en', 'ukr', 'ru'],
+    locales: ['de', 'en', 'ua', 'ru'],
     strategy: 'prefix_and_default',
     defaultLocale: 'de'
   },

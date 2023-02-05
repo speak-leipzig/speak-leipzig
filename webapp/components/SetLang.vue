@@ -3,7 +3,7 @@ const { locale } = useI18n()
 const items = [
   { lang: 'de' ,title: 'deutsch' },
   { lang: 'en' ,title: 'english' },
-  { lang: 'ukr' ,title: 'українська' },
+  { lang: 'ua' ,title: 'українська' },
   { lang: 'ru' ,title: 'русский' },
 ]
 </script>
