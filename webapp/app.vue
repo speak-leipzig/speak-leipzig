@@ -1,4 +1,5 @@
 <script setup>
+const localePath = useLocalePath()
 const router = useRouter()
 </script>
 
@@ -16,16 +17,16 @@ const router = useRouter()
         centered
         color="grey-darken-2"
       >
-        <v-tab @click="router.push('/')">
+        <v-tab @click="router.push(localePath('/'))">
           Start
         </v-tab>
-        <v-tab @click="router.push('/offers')">
+        <v-tab @click="router.push(localePath('/offers'))">
           Angebot
         </v-tab>
-        <v-tab @click="router.push('/facilities')">
+        <v-tab @click="router.push(localePath('/facilities'))">
           Einrichtungen
         </v-tab>
-        <v-tab @click="router.push('/team')">
+        <v-tab @click="router.push(localePath('/team'))">
           Team
         </v-tab>
       </v-tabs>

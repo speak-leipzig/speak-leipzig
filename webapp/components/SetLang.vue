@@ -10,13 +10,11 @@ const items = [
 
 <template>
   <div class="text-center">
-    <v-menu
-      open-on-hover
-    >
+    <v-menu>
       <template v-slot:activator="{ props }">
         <v-btn
           v-bind="props"
-          icon
+          
           size="small"
         >
           <v-icon>mdi-translate</v-icon>
@@ -29,7 +27,7 @@ const items = [
           v-for="(item, index) in items"
           :key="index"
         >
-          <v-list-item-title><nuxt-link :to="switchLocalePath(item.lang)">{{ item.title }}</nuxt-link></v-list-item-title>
+          <v-list-item-title><nuxt-link style="text-decoration: none; color: inherit;" :to="switchLocalePath(item.lang)">{{ item.title }}</nuxt-link></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

@@ -1,5 +1,6 @@
 <script setup>
 const router = useRouter()
+const localePath = useLocalePath()
 const props = defineProps({
   id : {
     type: String,
@@ -15,7 +16,7 @@ const props = defineProps({
     outlined
     max-width="400px"
     elevation="4"
-    @click="router.push(`/offers/${props.id}`)"
+    @click="router.push(localePath(`/offers/${props.id}`))"
   >
     <v-card-title class="d-flex justify-space-between">
       <span class="headline">

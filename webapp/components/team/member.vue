@@ -7,7 +7,7 @@ const mail = 'vita@....de'
 </script>
 
 <template>
-  <v-card elevation="5" @click="router.push(`/team/vita`)" >
+  <v-card elevation="5" @click="router.push(localePath(`/team/vita`))" >
     <div class="d-flex justify-space-between" >
       <div>
         <v-card-title class="mt-2">
