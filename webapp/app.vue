@@ -1,5 +1,5 @@
-<script setup lang="ts">
-const router = useRouter();
+<script setup>
+const router = useRouter()
 </script>
 
 <template>

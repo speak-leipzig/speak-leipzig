@@ -1,9 +1,10 @@
 <script setup>
+const { locale } = useI18n()
 const items = [
-  { title: 'deutsch' },
-  { title: 'english' },
-  { title: 'українська' },
-  { title: 'русский' },
+  { lang: 'de' ,title: 'deutsch' },
+  { lang: 'en' ,title: 'english' },
+  { lang: 'ukr' ,title: 'українська' },
+  { lang: 'ru' ,title: 'русский' },
 ]
 </script>
 
@@ -19,6 +20,7 @@ const items = [
           size="small"
         >
           <v-icon>mdi-translate</v-icon>
+          {{ locale }}
         </v-btn>
       </template>
 
@@ -27,7 +29,7 @@ const items = [
           v-for="(item, index) in items"
           :key="index"
         >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title><nuxt-link :to="switchLocalePath(item.lang)">{{ item.title }}</nuxt-link></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
