@@ -27,7 +27,9 @@ const items = [
           v-for="(item, index) in items"
           :key="index"
         >
-          <v-list-item-title><nuxt-link style="text-decoration: none; color: inherit;" :to="switchLocalePath(item.lang)">{{ item.title }}</nuxt-link></v-list-item-title>
+          <nuxt-link style="text-decoration: none; color: inherit;" :to="switchLocalePath(item.lang)">
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </nuxt-link>
         </v-list-item>
       </v-list>
     </v-menu>
