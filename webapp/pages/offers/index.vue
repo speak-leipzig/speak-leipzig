@@ -11,8 +11,10 @@ const items = [
 
 <template>
   <NuxtLayout name="threecols">
-    <h1>Offer</h1>
-    <p>This is the offer page</p>
+    <WrapperTranslation v-slot="{ translation }" collection="pages" id="offers">
+      <h1 v-html="translation.title"></h1>
+      <span v-html="translation.content"></span>
+    </WrapperTranslation>
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
         v-for="i in 10"

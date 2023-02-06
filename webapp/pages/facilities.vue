@@ -1,7 +1,9 @@
 <template>
   <NuxtLayout>
-    <h1>Einrichtungen</h1>
-    <p>This is the facilities page</p>
+    <WrapperTranslation v-slot="{ translation }" collection="pages" id="facilities">
+      <h1 v-html="translation.title"></h1>
+      <span v-html="translation.content"></span>
+    </WrapperTranslation>
     <br>
   </NuxtLayout>
 </template>
