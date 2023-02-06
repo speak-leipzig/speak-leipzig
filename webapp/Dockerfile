@@ -12,12 +12,7 @@ RUN yarn install \
 
 RUN yarn build
 
-RUN rm -rf node_modules && \
-  NODE_ENV=production yarn install \
-  --prefer-offline \
-  --pure-lockfile \
-  --non-interactive \
-  --production=true
+RUN rm -rf node_modules
 
 FROM node:lts
 
@@ -28,4 +23,4 @@ COPY --from=builder /app  .
 ENV HOST 0.0.0.0
 EXPOSE 3000
 
-CMD [ "yarn", "start" ]
+CMD [ "node", ".output/server/index.mjs" ]
