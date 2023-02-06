@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   modules: [
     '@nuxtjs/i18n',
     "nuxt-directus"
@@ -8,6 +9,9 @@ export default defineNuxtConfig({
     locales: ['de', 'en', 'ua', 'ru'],
     strategy: 'prefix_and_default',
     defaultLocale: 'de'
+  },
+  directus: {
+    url: 'https://cms.speak-leipzig.de/',
   },
   css: [
     'vuetify/lib/styles/main.sass',

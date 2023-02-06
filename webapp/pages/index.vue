@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout>
-    <h1>Home</h1>
-    <p>This is the home page</p>
+    <WrapperTranslation v-slot="{ translation }" collection="pages" id="home">
+      <h1 v-html="translation.title"></h1>
+      <span v-html="translation.content"></span>
+    </WrapperTranslation>
   </NuxtLayout>
 </template>
