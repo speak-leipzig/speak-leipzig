@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/i18n',
+    "nuxt-directus"
   ],
   i18n: {
     locales: ['de', 'en', 'ua', 'ru'],
