@@ -1,5 +1,5 @@
 <script setup>
-const { getItems } = useDirectusItems();
+const { getItems, getItemById } = useDirectusItems();
 const { locale } = useI18n();
 
 const props = defineProps({
@@ -14,15 +14,9 @@ const props = defineProps({
 });
 
 async function getTranslations(collection, id) {
-  const items = await getItems({
+  const item = await getItemById({
     collection: collection,
-    params: {
-      filter: {
-        id: {
-          _eq: id,
-        },
-      }
-    },
+    id: id
   });
 
   return await getItems({
@@ -30,7 +24,7 @@ async function getTranslations(collection, id) {
     params: {
       filter: {
         id: {
-          _in: items[0].translations,
+          _in: item.translations,
         }
       }
     },
