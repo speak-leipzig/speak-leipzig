@@ -1,12 +1,25 @@
 <script setup>
-const items = [
-  { text: 'A1', count: 0 },
-  { text: 'A2', count: 0 },
-  { text: 'B1', count: 0 },
-  { text: 'B2', count: 10 },
-  { text: 'C1', count: 0 },
-  { text: 'C2', count: 0 },
+import { arrayExpression } from '@babel/types';
+
+const { getItems } = useDirectusItems();
+
+const level = [
+  { key:'a0' ,text: 'A0', count: 0 },
+  { key:'a1' ,text: 'A1', count: 0 },
+  { key:'a2' ,text: 'A2', count: 0 },
+  { key:'b1' ,text: 'B1', count: 0 },
+  { key:'b2' ,text: 'B2', count: 10 },
+  { key:'c1' ,text: 'C1', count: 0 },
+  { key:'c2' ,text: 'C2', count: 0 },
+  { key:'all' ,text: 'Alle', count: 0 }
 ]
+
+const getLevel = (offer) => offer.level.map(lvl => level.find((l) => l.key === lvl).text)
+
+const offers = await getItems({
+  collection: 'offers'
+});
+
 </script>
 
 <template>
@@ -17,10 +30,10 @@ const items = [
     </WrapperTranslation>
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
-        v-for="i in 10"
-        :key="i"
+        v-for="offer in offers"
+        :key="offer.id"
       >
-        <OfferCard :id="i.toString()" />
+        <OfferCard :value="offer"/>
       </v-col>
     </v-row>
 
@@ -29,21 +42,21 @@ const items = [
         <v-list-subheader>Level</v-list-subheader>
 
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(lvl, i) in level"
           :key="i"
-          :value="item"
+          :value="lvl"
           active-color="primary"
         >
           <template v-slot:prepend>
             <v-icon icon="mdi-license"></v-icon>
           </template>
 
-          <v-list-item-title v-text="item.text"></v-list-item-title>
-          <template v-if="item.count > 0" v-slot:append>
+          <v-list-item-title v-text="lvl.text"></v-list-item-title>
+          <template v-if="lvl.count > 0" v-slot:append>
             <v-chip
               color="grey-darken-1 mx-2"
               text-color="white"
-              label>{{ item.count }}</v-chip>
+              label>{{ lvl.count }}</v-chip>
           </template>
         </v-list-item>
       </v-list>
@@ -58,7 +71,6 @@ const items = [
           :key="i"
           class="my-2"
           active-color="primary"
-          @click=""
         >
           <template v-slot:prepend>
             <v-avatar color="grey">

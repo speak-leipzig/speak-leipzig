@@ -20,7 +20,10 @@ const props = defineProps({
 async function getTranslations(collection, id) {
   const item = await getItemById({
     collection: collection,
-    id: id
+    id: id,
+    params:{
+      fields: ['translations']
+    }
   });
 
   return await getItems({

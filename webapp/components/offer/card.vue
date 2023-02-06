@@ -2,8 +2,7 @@
 const router = useRouter()
 const localePath = useLocalePath()
 const props = defineProps({
-  id : {
-    type: String,
+  value:{
     required: true
   }
 })
@@ -16,44 +15,46 @@ const props = defineProps({
     outlined
     max-width="400px"
     elevation="4"
-    @click="router.push(localePath(`/offers/${props.id}`))"
+    @click="router.push(localePath(`/offers/${value.id}`))"
   >
-    <v-card-title class="d-flex justify-space-between">
-      <span class="headline">
-        Kurs {{ props.id }}
-      </span>
-      <v-spacer></v-spacer>
-      <v-chip
-        color="grey-darken-1 mx-2"
-        text-color="white"
-        label
-      >
-          Vita
-          <v-tooltip 
-            activator="parent"
-            location="bottom"
-          >
-            Vitaliia Sarvirova
-          </v-tooltip>
-      </v-chip>
-      <v-avatar
-        image="/img/vitti.png"
-        size="32"
-      ></v-avatar>
-    </v-card-title>
-    <v-card-subtitle class="d-flex justify-start">
-      
-      <WrapperChip tooltip="Level: B2">
-        B2
-      </WrapperChip>
+    <WrapperTranslation v-slot="{ translation }" collection="offers" :id="value.id">
+      <v-card-title class="d-flex justify-space-between">
+        <span v-html="translation.title" class="headline"></span>
+        <v-spacer></v-spacer>
+        <v-chip
+          color="grey-darken-1 mx-2"
+          text-color="white"
+          label
+        >
+            Vita
+            <v-tooltip 
+              activator="parent"
+              location="bottom"
+            >
+              Vitaliia Sarvirova
+            </v-tooltip>
+        </v-chip>
+        <v-avatar
+          image="/img/vitti.png"
+          size="32"
+        ></v-avatar>
+      </v-card-title>
+      <v-card-subtitle class="d-flex justify-start">
+        <div v-for="lvl in value.level" :key="lvl">
+          <WrapperChip :tooltip="`Level: ${lvl}`">
+            {{ lvl }}
+          </WrapperChip>
+        </div>
 
-      <WrapperChip tooltip="in Präsenz">
-        <v-icon>mdi-account-group</v-icon>
-      </WrapperChip>
-      
-    </v-card-subtitle>
-  <v-card-text>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, deleniti veniam molestiae repellendus aspernatur et eveniet nemo sed voluptates quae quas laudantium perspiciatis autem quasi sequi tenetur. A, molestias rerum!
-  </v-card-text>
+        <WrapperChip v-if="value.online" tooltip="in Präsenz">
+          <v-icon>mdi-account-group</v-icon>
+        </WrapperChip>
+        <WrapperChip v-else tooltip="online">
+          <v-icon>mdi-web</v-icon>
+        </WrapperChip>
+        
+      </v-card-subtitle>
+    <v-card-text v-html="translation.short_description"></v-card-text>
+  </WrapperTranslation>
   </v-card>
 </template>

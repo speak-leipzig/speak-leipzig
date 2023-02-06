@@ -1,14 +1,22 @@
 <script setup>
 const route = useRoute()
 const router = useRouter()
+const { getItemById } = useDirectusItems();
+
+const offer = await getItemById({
+  collection: 'offers',
+  id: route.params.id
+})
+
 </script>
 
 <template>
   <NuxtLayout name="threecols">
-    <h1>Kurs {{ route.params.id }}</h1>
-    <p>Dies ist die Angebot Seite</p>
-    <br>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi sequi iste delectus libero veniam ut accusamus minima alias. Quam nostrum rem iusto nesciunt libero ab totam, consequuntur quo omnis sunt? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos, quod qui quibusdam veniam ducimus eligendi ratione repellat nam, doloribus perspiciatis maxime rem deleniti cumque assumenda officiis, nesciunt consequuntur eius molestiae? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores magnam molestias maxime aspernatur! Minima fuga tenetur, a consequuntur molestias pariatur quae, magnam aspernatur fugit, aliquid quaerat maxime? Minima, deleniti nihil.</p>
+    <WrapperTranslation v-slot="{ translation }" collection="offers" :id="route.params.id">
+      <h1 v-html="translation.title"></h1>
+      <div class="my-10" v-html="translation.short_description"></div>
+      <div class="my-10" v-html="translation.text"></div>
+    </WrapperTranslation>
     <template #left>
       <v-card elevation="0">
         <v-card-title class="mt-2">
