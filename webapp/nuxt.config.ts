@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     "nuxt-directus"
   ],
   i18n: {
-    baseUrl: 'https://my-nuxt-app.com',
+    baseUrl: 'https://speak-leipzig.de/',
     locales: [
       { code: 'de', iso: 'de-DE', name: 'Deutsch', isCatchallLocale: true },
       { code: 'en', iso: 'en-US', name: 'English' },
