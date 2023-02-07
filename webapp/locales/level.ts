@@ -1,5 +1,6 @@
 export default {
   en: {
+    level: 'level',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',
@@ -8,9 +9,10 @@ export default {
     c1: 'C1',
     c2: 'C2',
     all: 'All',
-    none: 'None',
+    none: 'not specified',
   },
   de: {
+    level: 'Niveau',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',
@@ -19,9 +21,10 @@ export default {
     c1: 'C1',
     c2: 'C2',
     all: 'Alle',
-    none: 'Keine',
+    none: 'nicht angegeben',
   },
   ua: {
+    level: 'рівень',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',
@@ -30,9 +33,10 @@ export default {
     c1: 'C1',
     c2: 'C2',
     all: 'Всі',
-    none: 'Немає',
+    none: 'не вказано',
   },
   ru: {
+    level: 'уровень',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',
@@ -41,6 +45,6 @@ export default {
     c1: 'C1',
     c2: 'C2',
     all: 'Все',
-    none: 'Нет',
+    none: 'не указано',
   }
 }

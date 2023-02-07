@@ -41,7 +41,7 @@ const props = defineProps({
       </v-card-title>
       <v-card-subtitle class="d-flex justify-start">
         <div v-for="lvl in value.level" :key="lvl">
-          <WrapperChip :tooltip="`Level: ${lvl}`">
+          <WrapperChip :tooltip="`${$t('level')}: ${$t(lvl)}`">
             {{ $t(lvl) }}
           </WrapperChip>
         </div>

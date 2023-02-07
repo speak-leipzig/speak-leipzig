@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import levelMessages from './locales/level'
+import uiElementsMessages from './locales/uiElements'
+
 export default defineNuxtConfig({
   ssr: true,
   routeRules: {
@@ -18,6 +21,14 @@ export default defineNuxtConfig({
       { code: 'ua', iso: 'uk-UA', name: 'Українська'},
       { code: 'ru', iso: 'ru-RU', name: 'Русский'}
     ],
+    vueI18n: {
+      fallbackLocale: 'de',
+      locale: 'de',
+      messages: {
+        ...levelMessages,
+        //...uiElementsMessages
+      }
+    },
     strategy: 'prefix',
     defaultLocale: 'de',
     detectBrowserLanguage: {

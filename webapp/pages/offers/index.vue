@@ -3,7 +3,6 @@ import { arrayExpression } from '@babel/types';
 import { useLevel } from '../../composables/states';
 const { getItems } = useDirectusItems()
 const level = useLevel()
-const getLevel = (offer) => offer.level.map(lvl => level.find((l) => l.key === lvl).text)
 
 const offers = await getItems({
   collection: 'offers'
@@ -28,7 +27,7 @@ const offers = await getItems({
 
     <template #left>
       <v-list density="compact">
-        <v-list-subheader>Level</v-list-subheader>
+        <v-list-subheader>{{ $t('level') }}</v-list-subheader>
 
         <v-list-item
           v-for="(lvl, i) in level"
@@ -40,7 +39,7 @@ const offers = await getItems({
             <v-icon icon="mdi-license"></v-icon>
           </template>
 
-          <v-list-item-title v-text="lvl.text"></v-list-item-title>
+          <v-list-item-title v-text="$t(lvl)"></v-list-item-title>
           <template v-if="lvl.count > 0" v-slot:append>
             <v-chip
               color="grey-darken-1 mx-2"
