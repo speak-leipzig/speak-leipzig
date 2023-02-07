@@ -1,19 +1,8 @@
 <script setup>
 import { arrayExpression } from '@babel/types';
-
-const { getItems } = useDirectusItems();
-
-const level = [
-  { key:'a0' ,text: 'A0', count: 0 },
-  { key:'a1' ,text: 'A1', count: 0 },
-  { key:'a2' ,text: 'A2', count: 0 },
-  { key:'b1' ,text: 'B1', count: 0 },
-  { key:'b2' ,text: 'B2', count: 10 },
-  { key:'c1' ,text: 'C1', count: 0 },
-  { key:'c2' ,text: 'C2', count: 0 },
-  { key:'all' ,text: 'Alle', count: 0 }
-]
-
+import { useLevel } from '../../composables/states';
+const { getItems } = useDirectusItems()
+const level = useLevel()
 const getLevel = (offer) => offer.level.map(lvl => level.find((l) => l.key === lvl).text)
 
 const offers = await getItems({
