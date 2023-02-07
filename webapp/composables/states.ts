@@ -1,5 +1,6 @@
 export const useLevel = () => useState('level', () =>
   [
+    { key:null ,text: 'Keine Angabe'},
     { key:'a0' ,text: 'A0'},
     { key:'a1' ,text: 'A1'},
     { key:'a2' ,text: 'A2'},
