@@ -10,7 +10,9 @@
           min-height="268"
           class="px-2 pb-1"
         >
-          <slot name="left"/>
+          <div>
+            <slot name="left"></slot>
+          </div>
         </v-sheet>
       </v-col>
 
@@ -23,7 +25,9 @@
           rounded="lg"
           class="px-5 py-5"
         >
-          <slot />
+          <div>
+            <slot></slot>
+          </div>
         </v-sheet>
       </v-col>
 
@@ -35,7 +39,9 @@
           rounded="lg"
           min-height="268"
         >
-        <slot name="right"/>
+        <div>
+          <slot name="right"></slot>
+        </div>
         </v-sheet>
       </v-col>
     </v-row>

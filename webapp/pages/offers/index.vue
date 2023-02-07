@@ -33,7 +33,7 @@ const offers = await getItems({
         v-for="offer in offers"
         :key="offer.id"
       >
-        <OfferCard :value="offer"/>
+        <OfferCard :value="offer" />
       </v-col>
     </v-row>
 
@@ -87,6 +87,5 @@ const offers = await getItems({
         </v-list-item>
       </v-list>
     </template>
-
   </NuxtLayout>
 </template>

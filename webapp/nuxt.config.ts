@@ -1,13 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
+  routeRules: {
+    '*/offers': {ssr: false},
+    '*/offers/*': {ssr: true},
+    '*/facilities': {ssr: false},
+    '*/facilities/*': {ssr: true},
+    '*/team': {ssr: false},
+    '*/team/*': {ssr: true}
+  },
   modules: [
     '@nuxtjs/i18n',
     "nuxt-directus"
   ],
   i18n: {
-    locales: ['de', 'en', 'ua', 'ru'],
-    strategy: 'prefix_and_default',
+    baseUrl: 'https://my-nuxt-app.com',
+    locales: [
+      { code: 'de', iso: 'de-DE', name: 'Deutsch', isCatchallLocale: true },
+      { code: 'en', iso: 'en-US', name: 'English' },
+      { code: 'ua', iso: 'uk-UA', name: 'Українська'},
+      { code: 'ru', iso: 'ru-RU', name: 'Русский'}
+    ],
+    strategy: 'prefix',
     defaultLocale: 'de'
   },
   directus: {

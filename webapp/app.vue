@@ -35,7 +35,9 @@ const router = useRouter()
     </v-app-bar>
 
     <v-main class="bg-grey-lighten-3">
-      <NuxtPage />
+      <div>
+        <NuxtPage />
+      </div>
     </v-main>
   </v-app>
 </template>
