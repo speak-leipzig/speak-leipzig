@@ -19,7 +19,12 @@ export default defineNuxtConfig({
       { code: 'ru', iso: 'ru-RU', name: 'Русский'}
     ],
     strategy: 'prefix',
-    defaultLocale: 'de'
+    defaultLocale: 'de',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',  // recommended
+    }
   },
   directus: {
     url: 'https://cms.speak-leipzig.de/',
