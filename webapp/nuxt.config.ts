@@ -3,11 +3,8 @@ export default defineNuxtConfig({
   ssr: true,
   routeRules: {
     '*/offers': {ssr: false},
-    '*/offers/*': {ssr: true},
     '*/facilities': {ssr: false},
-    '*/facilities/*': {ssr: true},
     '*/team': {ssr: false},
-    '*/team/*': {ssr: true}
   },
   modules: [
     '@nuxtjs/i18n',
