@@ -1,3 +1,7 @@
+<script setup>
+//TODO: useDirectusUsers() to get all users
+</script>
+
 <template>
   <NuxtLayout>
     <WrapperTranslation v-slot="{ translation }" collection="pages" id="team">
