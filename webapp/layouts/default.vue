@@ -1,5 +1,11 @@
+<script setup>
+import { useDisplay } from 'vuetify'
+const {lgAndDown} = useDisplay()
+</script>
+
+
 <template>
-  <div class="pa-10">
+  <div :class="lgAndDown? 'pa-2' : 'pa-10'">
     <v-row>
       <v-col
         cols="12"
