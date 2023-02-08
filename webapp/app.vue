@@ -41,3 +41,27 @@ const router = useRouter()
     </v-main>
   </v-app>
 </template>
+
+
+<style>
+.sheet-pressed {
+  border-radius: 9px;
+  background: #ffffff;
+  box-shadow: 
+    inset 10px 10px 20px #fafafa,
+    inset -10px -10px 20px #ffffff;
+}
+
+.card {
+  cursor: pointer;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow:  10px 10px 20px #bfbfbf,
+              -10px -10px 20px #ffffff;
+}
+.card:hover{
+  background: #faf9f9;
+  box-shadow:  20px 20px 40px #bcbbbb,
+             -20px -20px 40px #ffffff;
+}
+</style>

@@ -14,7 +14,7 @@
         <v-sheet
           min-height="70vh"
           rounded="lg"
-          class="px-5 py-5"
+          class="px-5 py-5 sheet-pressed"
         >
           <slot />
         </v-sheet>

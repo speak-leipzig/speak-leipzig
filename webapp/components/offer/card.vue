@@ -11,10 +11,9 @@ const props = defineProps({
 
 <template>
   <v-card
-    class="mx-auto py-2"
+    class="card mx-auto py-2"
     outlined
     max-width="400px"
-    elevation="4"
     @click="router.push(localePath(`/offers/${value.id}`))"
   >
     <WrapperTranslation v-slot="{ translation }" collection="offers" :id="value.id">

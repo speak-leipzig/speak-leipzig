@@ -7,7 +7,7 @@ const mail = 'vita@....de'
 </script>
 
 <template>
-  <v-card elevation="5" @click="router.push(localePath(`/team/vita`))" >
+  <v-card class="card" @click="router.push(localePath(`/team/vita`))" >
     <div class="d-flex justify-space-between" >
       <div>
         <v-card-title class="mt-2">
@@ -16,7 +16,7 @@ const mail = 'vita@....de'
         <v-card-text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus iure voluptas eveniet minus dolorum esse delectus neque nesciunt id? Facilis quos maxime, magni consectetur veritatis veniam dolorem iure animi sunt?
         </v-card-text>
-        <v-list>
+        <v-list style="background: rgba(0);">
           <v-list-item>
             <v-list-item-title>
               <v-icon class="mr-4">mdi-translate</v-icon>
