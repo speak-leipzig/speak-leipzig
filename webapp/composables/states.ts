@@ -1,3 +1,10 @@
+export const useMenu = () => useState('menu', () => [
+  { key: 'home', path: '/' },
+  { key: 'offers', path: '/offers' },
+  { key: 'facilities', path: '/facilities' },
+  { key: 'team', path: '/team' }
+]);
+
 export const useLevel = () => useState('level', () =>
   [
     'none',

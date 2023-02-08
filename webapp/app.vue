@@ -1,4 +1,7 @@
 <script setup>
+import { useMenu } from "./composables/states"
+
+const menu = useMenu()
 const localePath = useLocalePath()
 const router = useRouter()
 </script>
@@ -17,18 +20,11 @@ const router = useRouter()
         centered
         color="grey-darken-2"
       >
-        <v-tab @click="router.push(localePath('/'))">
-          Start
-        </v-tab>
-        <v-tab @click="router.push(localePath('/offers'))">
-          Angebot
-        </v-tab>
-        <v-tab @click="router.push(localePath('/facilities'))">
-          Einrichtungen
-        </v-tab>
-        <v-tab @click="router.push(localePath('/team'))">
-          Team
-        </v-tab>
+        <div v-for="tab in menu" :key="tab.key">
+          <v-tab @click="router.push(localePath(tab.path))">
+            {{ $t(tab.key) }}
+          </v-tab>
+        </div>
       </v-tabs>
       <v-spacer></v-spacer>
       <SetLang />
