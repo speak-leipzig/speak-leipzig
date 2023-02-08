@@ -1,5 +1,4 @@
 <script setup>
-import { arrayExpression } from '@babel/types';
 import { useLevel } from '../../composables/states';
 const { getItems } = useDirectusItems()
 const level = useLevel()
