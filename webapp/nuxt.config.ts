@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import levelMessages from './locales/level'
-import uiElementsMessages from './locales/uiElements'
+import messages from './locales/.merge'
 
 export default defineNuxtConfig({
   ssr: true,
@@ -24,10 +23,7 @@ export default defineNuxtConfig({
     vueI18n: {
       fallbackLocale: 'de',
       locale: 'de',
-      messages: {
-        ...levelMessages,
-        //...uiElementsMessages
-      }
+      messages: messages
     },
     strategy: 'prefix',
     defaultLocale: 'de',

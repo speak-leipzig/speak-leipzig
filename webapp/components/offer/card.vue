@@ -46,10 +46,10 @@ const props = defineProps({
           </WrapperChip>
         </div>
 
-        <WrapperChip v-if="value.online" tooltip="in Präsenz">
+        <WrapperChip v-if="value.online" :tooltip="$t('presence')">
           <v-icon>mdi-account-group</v-icon>
         </WrapperChip>
-        <WrapperChip v-else tooltip="online">
+        <WrapperChip v-else :tooltip="$t('online')">
           <v-icon>mdi-web</v-icon>
         </WrapperChip>
         
