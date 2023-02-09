@@ -1,3 +1,5 @@
+export const useCmsUrl = () => useState('cmsUrl', () => 'https://cms.speak-leipzig.de');
+
 export const useMenu = () => useState('menu', () => [
   { key: 'home', path: '/' },
   { key: 'offers', path: '/offers' },
