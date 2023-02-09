@@ -1,4 +1,6 @@
 <script setup>
+//TODO: more respnsive
+
 const router = useRouter()
 const { locale } = useI18n()
 const { getItems } = useDirectusItems()
