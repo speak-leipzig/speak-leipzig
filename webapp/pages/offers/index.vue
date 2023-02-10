@@ -7,6 +7,10 @@ const offers = await getItems({
   collection: 'offers'
 });
 
+const facilities = await getItems({
+  collection: 'facilities'
+});
+
 </script>
 
 <template>
@@ -51,11 +55,11 @@ const offers = await getItems({
 
     <template #right>
       <v-list density="compact" class="ma-1">
-        <v-list-subheader>Einrichtungen</v-list-subheader>
+        <v-list-subheader>{{ $t('facilities') }}</v-list-subheader>
 
         <v-list-item
-          v-for="i in 3"
-          :key="i"
+          v-for="facility in facilities"
+          :key="facility.id"
           class="my-2"
           active-color="primary"
         >
@@ -64,7 +68,7 @@ const offers = await getItems({
             </v-avatar>
           </template>
 
-          <v-list-item-title>Einrichtung {{i}}</v-list-item-title>
+          <v-list-item-title>{{ facility.name }}</v-list-item-title>
           <template v-slot:append>
             <v-chip
               color="grey-darken-1 mx-2"
