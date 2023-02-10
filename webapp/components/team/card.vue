@@ -1,10 +1,14 @@
 <script setup>
 //TODO: more respnsive
 //TODO: Telegram link
+import { useDisplay } from 'vuetify'
+
 const router = useRouter()
 const { locale } = useI18n()
 const { getItems } = useDirectusItems()
 const { getThumbnail: img } = useDirectusFiles()
+const { locales } = useI18n()
+const { mobile } = useDisplay()
 
 const props = defineProps({
   value: {
@@ -26,6 +30,8 @@ const descriptions = await getItems({
 })
 
 const description = $computed(() => descriptions.find((description) => description.languages_code === locale.value).public_description)
+
+
 </script>
 
 <template>
@@ -38,18 +44,26 @@ const description = $computed(() => descriptions.find((description) => descripti
         <v-card-text>
           {{ description }}
         </v-card-text>
+      </div>
+      <v-avatar
+        class="ma-4"
+        :image="img(member.avatar, { width: 128, height: 128, fit: 'cover' })"
+        :size="mobile ? 96: 128"
+      ></v-avatar>
+    </div>
         <v-list style="background: rgba(0,0,0,0)!important;">
           <v-list-item>
-            <v-list-item-title>
-              <v-icon class="mr-4">mdi-translate</v-icon>
-              <WrapperChip :tooltip="$t('de')">Deutsch</WrapperChip>
-              <WrapperChip :tooltip="$t('en')">Englisch</WrapperChip>
-              <WrapperChip :tooltip="$t('ua')">українська</WrapperChip>
-              <WrapperChip :tooltip="$t('ru')">русский</WrapperChip>
-            </v-list-item-title>
+              <v-row class="d-flex justify-start ma-1">
+                <div>
+                  <v-icon class="mr-1 my-2">mdi-translate</v-icon>
+                </div>
+                <div v-for="lang in member.speaking" :key="lang" class="my-1">
+                  <WrapperChip :tooltip="$t(lang)">{{ locales.find((l) => l.code === lang).name }}</WrapperChip>
+                </div>
+              </v-row>
           </v-list-item>
           <v-list-item>
-            <v-list-item-title>
+            <v-list-item-title class="d-flex justify-start ma-1">
               <span class="mr-7">
                 <v-icon class="mr-4">mdi-email-fast-outline</v-icon>
                 <a :href="`mailto:${member.email}`">{{ member.email }}</a>
@@ -61,12 +75,5 @@ const description = $computed(() => descriptions.find((description) => descripti
             </v-list-item-title>
           </v-list-item>
         </v-list>
-      </div>
-      <v-avatar
-        class="ma-4"
-        :image="img(member.avatar, { width: 128, height: 128, fit: 'cover' })"
-        size="128"
-      ></v-avatar>
-    </div>
   </v-card>
 </template>
