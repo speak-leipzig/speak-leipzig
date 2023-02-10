@@ -1,6 +1,6 @@
 <script setup>
 //TODO: more respnsive
-
+//TODO: Telegram link
 const router = useRouter()
 const { locale } = useI18n()
 const { getItems } = useDirectusItems()
@@ -29,7 +29,7 @@ const description = $computed(() => descriptions.find((description) => descripti
 </script>
 
 <template>
-  <v-card class="card mx-auto" max-width="95%" width="800px" @click="router.push(localePath(`/team/vita`))" >
+  <v-card class="card mx-auto" max-width="95%" width="800px" @click="router.push(localePath(`/team/${member.id}`))" >
     <div class="d-flex justify-space-between" >
       <div>
         <v-card-title class="mt-2">
