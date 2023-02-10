@@ -1,5 +1,8 @@
 <script setup>
 import { useMenu } from "./composables/states"
+import { useDisplay } from 'vuetify'
+
+const { mobile } = useDisplay()
 
 const menu = useMenu()
 const localePath = useLocalePath()
@@ -7,12 +10,13 @@ const router = useRouter()
 </script>
 
 <template>
-    <v-app id="inspire">
+  <v-app id="inspire">
     <v-app-bar
       class="px-3"
       color="white"
       flat
       density="compact"
+      :location="mobile ? 'bottom' : 'top'"
     >
       <v-spacer></v-spacer>
 
@@ -21,7 +25,7 @@ const router = useRouter()
         color="grey-darken-2"
       >
         <div v-for="tab in menu" :key="tab.key">
-          <v-tab @click="router.push(localePath(tab.path))">
+          <v-tab :to="localePath(tab.path)" color="purple">
             {{ $t(tab.key) }}
           </v-tab>
         </div>
