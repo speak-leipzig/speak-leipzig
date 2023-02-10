@@ -67,7 +67,7 @@ const translation = $computed(() => translations.find((translation) => translati
 
     <template #right>
       <v-list density="compact">
-          <v-list-subheader>Sprachen</v-list-subheader>
+          <v-list-subheader>{{ $t('langs') }}</v-list-subheader>
           <v-list-item v-for="lang in user.speaking" :key="lang">
             <v-list-item-title>
               {{ $t(lang) }}
