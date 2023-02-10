@@ -15,14 +15,14 @@ const props = defineProps({
 <template>
   <v-card class="card ma-3" width="900px" max-width="95%">
     <v-row>
-      <v-col cols="1">
+      <v-col cols="2" lg="1" md="1">
       <v-avatar
           color="grey"
           size="54"
           class="my-3 mx-4"
         ></v-avatar>
       </v-col>
-      <v-col cols="11" sm="12" md="11">
+      <v-col cols="10">
         <div :class="md?'pl-2':''">
           <v-card-title>
             <span class="headline">{{ value.name }}</span>
