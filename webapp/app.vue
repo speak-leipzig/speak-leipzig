@@ -14,8 +14,9 @@ const router = useRouter()
     <v-app-bar
       class="px-3"
       color="white"
-      flat
-      density="compact"
+      :flat="!mobile"
+      :style="mobile ? 'bottom: 3px;':''"
+      :density="mobile ? 'default':'compact'"
       :location="mobile ? 'bottom' : 'top'"
     >
       <v-spacer></v-spacer>
