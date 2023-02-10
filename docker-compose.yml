@@ -1,6 +1,6 @@
 version: '3'
 services:
-  webapp-rc:
+  webapp-demo:
     image: webapp:rc-1
     build: ./webapp
     ports:
