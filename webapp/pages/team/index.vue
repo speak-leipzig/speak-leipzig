@@ -23,5 +23,6 @@ const members = await fetch(`${cmsUrl.value}/users`)
     <v-row class="my-5" v-for="member in members" :key="member.id">
       <TeamCard :value="member"/>
     </v-row>
+    <div class="text-center"><v-btn variant="outlined" to="/impressum">Impressum</v-btn></div>
   </NuxtLayout>
 </template>
