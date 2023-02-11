@@ -1,7 +1,7 @@
 version: '3'
 services:
   webapp-demo:
-    image: webapp:rc-<!--GAMFC-->02.11.00.19<!--GAMFC-END-->
+    image: webapp:rc-_-demo
     build: ./webapp
     ports:
       - '${PORTBASE}81:3000'
