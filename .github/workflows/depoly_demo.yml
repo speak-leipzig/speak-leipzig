@@ -15,6 +15,7 @@ jobs:
       - name: Set demo tag
         uses: jaywcjlove/github-action-modify-file-content@main
         with:
+          token: ${{ secrets.token }}
           path: docker-compose.yml
           body: "{{date:MM.DD.HH.mm}}"
       
