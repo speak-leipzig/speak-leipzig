@@ -15,7 +15,7 @@ const router = useRouter()
       class="px-3"
       color="white"
       :flat="!mobile"
-      :style="mobile ? 'bottom: 3px;':''"
+      :style="mobile ? 'bottom: 1px;':''"
       :density="mobile ? 'default':'compact'"
       :location="mobile ? 'bottom' : 'top'"
     >

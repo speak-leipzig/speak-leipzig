@@ -15,6 +15,7 @@ const members = await fetch(`${cmsUrl.value}/users`)
 <template>
   <NuxtLayout>
     <WrapperTranslation v-slot="{ translation }" collection="pages" id="team">
+      <DynamicHead :title="translation.title" />
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>

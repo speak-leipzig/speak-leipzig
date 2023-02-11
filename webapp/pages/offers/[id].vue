@@ -7,12 +7,12 @@ const offer = await getItemById({
   collection: 'offers',
   id: route.params.id
 })
-
 </script>
 
 <template>
   <NuxtLayout name="threecols">
     <WrapperTranslation v-slot="{ translation }" collection="offers" :id="route.params.id">
+      <DynamicHead :title="translation.title" />
       <h1 v-html="translation.title"></h1>
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>

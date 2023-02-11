@@ -16,6 +16,7 @@ const facilities = await getItems({
 <template>
   <NuxtLayout name="threecols">
     <WrapperTranslation v-slot="{ translation }" collection="pages" id="offers">
+      <DynamicHead :title="translation.title" />
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
