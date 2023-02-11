@@ -18,6 +18,8 @@ jobs:
           token: ${{ secrets.TOKEN }}
           path: docker-compose.yml
           body: "{{date:MM.DD.HH.mm}}"
+          openDelimiter: rc-
+          closeDelimiter: -demo
       
       - name: Pull Portainer Hook
         uses: muinmomin/webhook-action@v1.0.0
