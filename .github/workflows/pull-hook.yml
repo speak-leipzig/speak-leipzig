@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Pull Portainer Hook
         uses: muinmomin/webhook-action@v1.0.0
+        continue-on-error: true
         with:
           url: ${{ secrets.PORTAINER_PULL_HOOK }}
       
