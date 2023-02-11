@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [ main ]
+
+name: pull portainer hook
+jobs:
+  pull-hook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Portainer Hook
+        uses: muinmomin/webhook-action@v1.0.0
+        with:
+          url: ${{ secrets.PORTAINER_PULL_HOOK }}
+      
+      - name: Repull Portainer Hook
+        if: ${{ failure() }}
+        uses: muinmomin/webhook-action@v1.0.0
+        with:
+          url: ${{ secrets.PORTAINER_PULL_HOOK }}
