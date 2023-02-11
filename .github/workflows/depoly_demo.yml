@@ -25,3 +25,9 @@ jobs:
         uses: muinmomin/webhook-action@v1.0.0
         with:
           url: ${{ secrets.PORTAINER_PULL_HOOK }}
+      
+      - name: Repull Portainer Hook
+        if: ${{ failure() }}
+        uses: muinmomin/webhook-action@v1.0.0
+        with:
+          url: ${{ secrets.PORTAINER_PULL_HOOK }}
