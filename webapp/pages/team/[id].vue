@@ -28,7 +28,7 @@ const translation = $computed(() => translations.find((translation) => translati
 
 <template>
   <NuxtLayout name="threecols">
-    <DynamicHead :title="`${user.first_name} ${user.last_name}`" />
+    <DynamicHead :title="`${user.first_name} ${user.last_name}`"/>
     <div class="pa-5">
       <div class="text-center">
         <v-avatar 

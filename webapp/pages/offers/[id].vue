@@ -12,7 +12,7 @@ const offer = await getItemById({
 <template>
   <NuxtLayout name="threecols">
     <WrapperTranslation v-slot="{ translation }" collection="offers" :id="route.params.id">
-      <DynamicHead :title="translation.title" />
+      <DynamicHead :title="translation.title" :description="translation.short_description"/>
       <h1 v-html="translation.title"></h1>
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>
