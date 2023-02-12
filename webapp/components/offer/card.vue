@@ -50,7 +50,7 @@ const props = defineProps({
           </WrapperChip>
         </div>
 
-        <WrapperChip v-if="offer.online" :tooltip="$t('presence')">
+        <WrapperChip v-if="!offer.online" :tooltip="$t('presence')">
           <v-icon>mdi-account-group</v-icon>
         </WrapperChip>
         <WrapperChip v-else :tooltip="$t('online')">

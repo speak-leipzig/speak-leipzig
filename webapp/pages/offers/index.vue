@@ -16,6 +16,7 @@ const locations = await getItems({
 });
 
 function getFacility(offer) {
+  if (!offer.location) return null
   const location = locations.find(l => l.id === offer.location)
   return facilities.find(f => f.id === location.facility)
 }
