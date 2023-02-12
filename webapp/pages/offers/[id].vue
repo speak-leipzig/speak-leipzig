@@ -7,6 +7,22 @@ const offer = await getItemById({
   collection: 'offers',
   id: route.params.id
 })
+
+const location = await getItemById({
+  collection: 'locations',
+  id: offer.location
+})
+
+const facility = await getItemById({ //TODO: exceoption handling
+  collection: 'facilities',
+  id: location.facility
+})
+
+function getGMapsLink() {
+  const { street, no, zip, city } = location
+  return `https://www.google.com/maps/search/?api=1&query=${street}%20${no},%20${zip}%20${city}`
+}
+
 </script>
 
 <template>
@@ -29,43 +45,61 @@ const offer = await getItemById({
                 <span>
                   <v-avatar
                     class="mr-2"
-                    image="/img/vitti.png"
+                    color="grey"
                     size="32"
                   ></v-avatar>
-                  <v-chip @click="router.push(localePath('/team'))">Vitaliia Sarvirova</v-chip>
+                  <v-chip @click="router.push(localePath('/facilities'))">{{ facility.name }}</v-chip>
                 </span>
               </v-list-item-title>
             </v-list-item>
             <v-list-item>
               <v-list-item-title>
-                <v-icon class="mr-4">mdi-account-group</v-icon>
-                max. 8 Teilnehmer
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
                 <v-icon class="mr-4">mdi-calendar</v-icon>
-                01.01.2021
+                  {{ $t(offer.weekday) }}
               </v-list-item-title>
             </v-list-item>
             <v-list-item>
               <v-list-item-title>
                 <v-icon class="mr-4">mdi-clock</v-icon>
-                19:00 - 20:00
+                {{ offer.time_start.substring(0,5) }} - {{ offer.time_end.substring(0,5) }}
               </v-list-item-title>
             </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <v-icon class="mr-4">mdi-cash</v-icon>
-                8 €
-              </v-list-item-title>
-            </v-list-item>
+            <!--start week 2 and 3 -->
+            <div v-if="offer.weekday_2">
+              <v-list-item>
+                <v-list-item-title>
+                  <v-icon class="mr-4">mdi-calendar</v-icon>
+                    {{ $t(offer.weekday_2) }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-icon class="mr-4">mdi-clock</v-icon>
+                  {{ offer.time_start_2.substring(0,5) }} - {{ offer.time_end_2.substring(0,5) }}
+                </v-list-item-title>
+              </v-list-item>
+            </div>
+            <div v-if="offer.weekday_3">
+              <v-list-item>
+                <v-list-item-title>
+                  <v-icon class="mr-4">mdi-calendar</v-icon>
+                    {{ $t(offer.weekday_3) }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-icon class="mr-4">mdi-clock</v-icon>
+                  {{ offer.time_start_3.substring(0,5) }} - {{ offer.time_end_3.substring(0,5) }}
+                </v-list-item-title>
+              </v-list-item>
+            </div>
+            <!--end week 2 and 3 -->
           </v-list>
         </v-card-text>
       </v-card>
     </template>
     <template #right>
-      <v-card elevation="0" rounded="5" @click="router.push(localePath())">
+      <v-card elevation="0" rounded="5" :href="getGMapsLink()">
         <v-img
             class="bg-white"
             rounded="lg"
@@ -75,7 +109,9 @@ const offer = await getItemById({
           ></v-img>
         <v-card-text>
           <v-icon class="mr-4">mdi-map-marker</v-icon>
-          <span>Waldstraße 1</span>
+          <span>
+            {{ location.street }} {{ location.no }}
+          </span>
         </v-card-text>
       </v-card>
     </template>
