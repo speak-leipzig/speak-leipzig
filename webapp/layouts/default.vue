@@ -9,27 +9,48 @@ const {lgAndDown} = useDisplay()
     <v-row>
       <v-col
         cols="12"
-        sm="2"
+        sm="3"
+        md="2"
+
       >
+        <v-sheet
+          rounded="lg"
+          class="px-2"
+        >
+          <div>
+            <slot name="left"></slot>
+          </div>
+        </v-sheet>
       </v-col>
 
       <v-col
         cols="12"
-        sm="8"
+        sm="6"
+        md="8"
       >
         <v-sheet
           min-height="70vh"
           rounded="lg"
           class="px-5 py-5 sheet-pressed"
         >
-          <slot />
+          <div>
+            <slot></slot>
+          </div>
         </v-sheet>
       </v-col>
 
       <v-col
         cols="12"
-        sm="2"
+        sm="3"
+        md="2"
       >
+        <v-sheet
+          rounded="lg"
+        >
+        <div>
+          <slot name="right"></slot>
+        </div>
+        </v-sheet>
       </v-col>
     </v-row>
   </div>

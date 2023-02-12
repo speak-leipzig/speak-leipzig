@@ -2,8 +2,11 @@
 const router = useRouter()
 const localePath = useLocalePath()
 const props = defineProps({
-  value:{
+  offer:{
     required: true
+  },
+  facility:{
+    required: false
   }
 })
 </script>
@@ -14,38 +17,40 @@ const props = defineProps({
     class="card mx-auto py-2"
     outlined
     max-width="400px"
-    @click="router.push(localePath(`/offers/${value.id}`))"
+    @click="router.push(localePath(`/offers/${offer.id}`))"
   >
-    <WrapperTranslation v-slot="{ translation }" collection="offers" :id="value.id">
+    <WrapperTranslation v-slot="{ translation }" collection="offers" :id="offer.id">
       <v-card-title class="d-flex justify-space-between">
         <span v-html="translation.title" class="headline"></span>
         <v-spacer></v-spacer>
-        <v-chip
-          color="grey-darken-1 mx-2"
-          text-color="white"
-          label
-        >
-            Vita
-            <v-tooltip 
-              activator="parent"
-              location="bottom"
-            >
-              Vitaliia Sarvirova
-            </v-tooltip>
-        </v-chip>
-        <v-avatar
-          image="/img/vitti.png"
-          size="32"
-        ></v-avatar>
+        <div v-if="facility">
+          <v-chip
+            color="grey-darken-1 mx-2"
+            text-color="white"
+            label
+          >
+              {{ facility.short_name }}
+              <v-tooltip 
+                activator="parent"
+                location="bottom"
+              >
+              {{ facility.name }}
+              </v-tooltip>
+          </v-chip>
+          <v-avatar
+            color="grey"
+            size="32"
+          ></v-avatar>
+        </div>
       </v-card-title>
       <v-card-subtitle class="d-flex justify-start">
-        <div v-for="lvl in value.level" :key="lvl">
+        <div v-for="lvl in offer.level" :key="lvl">
           <WrapperChip :tooltip="`${$t('level')}: ${$t(lvl)}`">
             {{ $t(lvl) }}
           </WrapperChip>
         </div>
 
-        <WrapperChip v-if="value.online" :tooltip="$t('presence')">
+        <WrapperChip v-if="!offer.online" :tooltip="$t('presence')">
           <v-icon>mdi-account-group</v-icon>
         </WrapperChip>
         <WrapperChip v-else :tooltip="$t('online')">
