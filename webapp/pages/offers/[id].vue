@@ -37,7 +37,6 @@ function getGMapsLink() {
       <h1 v-html="translation.title"></h1>
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>
-      {{ offer }}
     </WrapperTranslation>
     <template #left v-if="facility || offer.weekday">
       <v-card elevation="0">
