@@ -17,10 +17,10 @@ const getLocation = async () =>{
 const location = await getLocation()
 
 const getFacility = async () => {
-  if (!location?.facility) return null
+  if (!location?.facility && !offer.facility) return null
   return await getItemById({
   collection: 'facilities',
-  id: location.facility
+  id: offer.online ? offer.facility : location.facility
 })}
 const facility = await getFacility()
 
@@ -106,7 +106,7 @@ function getGMapsLink() {
         </v-card-text>
       </v-card>
     </template>
-    <template #right v-if="offer.location">
+    <template #right v-if="offer.location && !offer.online">
       <v-card elevation="0" rounded="5" :href="getGMapsLink()">
         <v-img
             class="bg-white"

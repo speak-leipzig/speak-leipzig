@@ -16,9 +16,10 @@ const locations = await getItems({
 });
 
 function getFacility(offer) {
-  if (!offer.location) return null
+  if (!offer.location && offer.facility) return null
   const location = locations.find(l => l.id === offer.location)
-  return facilities.find(f => f.id === location.facility)
+  const facilityId = offer.online ? offer.facility : location.facility
+  return facilities.find(f => f.id === facilityId)
 }
 
 </script>
