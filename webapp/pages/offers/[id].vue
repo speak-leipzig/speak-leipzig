@@ -58,14 +58,11 @@ function getGMapsLink() {
               </v-list-item-title>
             </v-list-item>
             <div v-if="offer.weekday">
-              <v-list-item>
+              <v-list-item class="my-2">
                 <v-list-item-title>
                   <v-icon class="mr-4">mdi-calendar</v-icon>
                     {{ $t(offer.weekday) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
+                  <br>
                   <v-icon class="mr-4">mdi-clock</v-icon>
                   {{ offer.time_start?.substring(0,5) }} - {{ offer.time_end?.substring(0,5) }}
                 </v-list-item-title>
@@ -73,28 +70,22 @@ function getGMapsLink() {
             </div>
             <!--start week 2 and 3 -->
             <div v-if="offer.weekday_2">
-              <v-list-item>
+              <v-list-item class="my-2">
                 <v-list-item-title>
                   <v-icon class="mr-4">mdi-calendar</v-icon>
                     {{ $t(offer.weekday_2) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
+                    <br>
                   <v-icon class="mr-4">mdi-clock</v-icon>
                   {{ offer.time_start_2.substring(0,5) }} - {{ offer.time_end_2.substring(0,5) }}
                 </v-list-item-title>
               </v-list-item>
             </div>
             <div v-if="offer.weekday_3">
-              <v-list-item>
+              <v-list-item class="my-2">
                 <v-list-item-title>
                   <v-icon class="mr-4">mdi-calendar</v-icon>
                     {{ $t(offer.weekday_3) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
+                    <br>
                   <v-icon class="mr-4">mdi-clock</v-icon>
                   {{ offer.time_start_3.substring(0,5) }} - {{ offer.time_end_3.substring(0,5) }}
                 </v-list-item-title>
