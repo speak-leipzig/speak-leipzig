@@ -11,6 +11,15 @@ const facilities = await getItems({
   collection: 'facilities'
 });
 
+const locations = await getItems({
+  collection: 'locations'
+});
+
+function getFacility(offer) {
+  const location = locations.find(l => l.id === offer.location)
+  return facilities.find(f => f.id === location.facility)
+}
+
 </script>
 
 <template>
@@ -25,7 +34,7 @@ const facilities = await getItems({
         v-for="offer in offers"
         :key="offer.id"
       >
-        <OfferCard :value="offer" />
+        <OfferCard :offer="offer" :facility="getFacility(offer)"/>
       </v-col>
     </v-row>
 
