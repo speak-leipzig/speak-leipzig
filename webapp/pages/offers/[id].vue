@@ -18,7 +18,7 @@ const location = await getLocation()
 
 const getFacility = async () => {
   if (!location?.facility) return null
-  return await getItemById({ //TODO: exceoption handling
+  return await getItemById({
   collection: 'facilities',
   id: location.facility
 })}
