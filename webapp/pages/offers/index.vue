@@ -14,7 +14,7 @@ const facilities = await getItems({
 </script>
 
 <template>
-  <NuxtLayout name="threecols">
+  <NuxtLayout>
     <WrapperTranslation v-slot="{ translation }" collection="pages" id="offers">
       <DynamicHead :title="translation.title" />
       <h1 v-html="translation.title"></h1>
@@ -54,7 +54,7 @@ const facilities = await getItems({
       </v-list>
     </template>
 
-    <template #right>
+    <template #right v-if="false">
       <v-list density="compact" class="ma-1">
         <v-list-subheader>{{ $t('facilities') }}</v-list-subheader>
 
@@ -72,6 +72,7 @@ const facilities = await getItems({
           <v-list-item-title>{{ facility.name }}</v-list-item-title>
           <template v-slot:append>
             <v-chip
+              v-if="false"
               color="grey-darken-1 mx-2"
               text-color="white"
               label>{{ i }}</v-chip>

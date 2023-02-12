@@ -27,7 +27,7 @@ const translation = $computed(() => translations.find((translation) => translati
 </script>
 
 <template>
-  <NuxtLayout name="threecols">
+  <NuxtLayout>
     <DynamicHead :title="`${user.first_name} ${user.last_name}`"/>
     <div class="pa-5">
       <div class="text-center">
