@@ -8,21 +8,26 @@ const offer = await getItemById({
   id: route.params.id
 })
 
-const location = await getItemById({
+const getLocation = async () =>{
+  if (!offer.location) return null
+  return await getItemById({
   collection: 'locations',
   id: offer.location
-})
+})}
+const location = await getLocation()
 
-const facility = await getItemById({ //TODO: exceoption handling
+const getFacility = async () => {
+  if (!location?.facility) return null
+  return await getItemById({ //TODO: exceoption handling
   collection: 'facilities',
   id: location.facility
-})
+})}
+const facility = await getFacility()
 
 function getGMapsLink() {
   const { street, no, zip, city } = location
   return `https://www.google.com/maps/search/?api=1&query=${street}%20${no},%20${zip}%20${city}`
 }
-
 </script>
 
 <template>
@@ -32,15 +37,16 @@ function getGMapsLink() {
       <h1 v-html="translation.title"></h1>
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>
+      {{ offer }}
     </WrapperTranslation>
-    <template #left>
+    <template #left v-if="facility || offer.weekday">
       <v-card elevation="0">
         <v-card-title class="mt-2">
           QuickInfos
         </v-card-title>
         <v-card-text>
           <v-list class="ml-n2">
-            <v-list-item>
+            <v-list-item v-if="facility">
               <v-list-item-title>
                 <span>
                   <v-avatar
@@ -52,18 +58,20 @@ function getGMapsLink() {
                 </span>
               </v-list-item-title>
             </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <v-icon class="mr-4">mdi-calendar</v-icon>
-                  {{ $t(offer.weekday) }}
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>
-                <v-icon class="mr-4">mdi-clock</v-icon>
-                {{ offer.time_start.substring(0,5) }} - {{ offer.time_end.substring(0,5) }}
-              </v-list-item-title>
-            </v-list-item>
+            <div v-if="offer.weekday">
+              <v-list-item>
+                <v-list-item-title>
+                  <v-icon class="mr-4">mdi-calendar</v-icon>
+                    {{ $t(offer.weekday) }}
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>
+                  <v-icon class="mr-4">mdi-clock</v-icon>
+                  {{ offer.time_start?.substring(0,5) }} - {{ offer.time_end?.substring(0,5) }}
+                </v-list-item-title>
+              </v-list-item>
+            </div>
             <!--start week 2 and 3 -->
             <div v-if="offer.weekday_2">
               <v-list-item>
@@ -98,7 +106,7 @@ function getGMapsLink() {
         </v-card-text>
       </v-card>
     </template>
-    <template #right>
+    <template #right v-if="offer.location">
       <v-card elevation="0" rounded="5" :href="getGMapsLink()">
         <v-img
             class="bg-white"
