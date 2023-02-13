@@ -46,22 +46,24 @@ const translation = $computed(() => translations.find((translation) => translati
     <template #left>
       <v-list density="compact">
           <v-list-subheader>Kontakt</v-list-subheader>
-          <v-list-item>
-            <template v-slot:prepend>
-              <v-icon icon="mdi-email-fast-outline"></v-icon>
-            </template>
-            <v-list-item-title>
-              <a :href="`mailto:${user.email}`">{{ user.email }}</a>
-            </v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <template v-slot:prepend>
-              <v-icon icon="mdi-message-fast-outline"></v-icon>
-            </template>
-            <v-list-item-title>
-              <a :href="``">Telegram</a>
-            </v-list-item-title>
-          </v-list-item>
+          <WrapperMinimize>
+            <v-list-item>
+              <template v-slot:prepend>
+                <v-icon icon="mdi-email-fast-outline"></v-icon>
+              </template>
+              <v-list-item-title>
+                <a :href="`mailto:${user.email}`">{{ user.email }}</a>
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <template v-slot:prepend>
+                <v-icon icon="mdi-message-fast-outline"></v-icon>
+              </template>
+              <v-list-item-title>
+                <a :href="``">Telegram</a>
+              </v-list-item-title>
+            </v-list-item>
+          </WrapperMinimize>
         </v-list>
     </template>
 
