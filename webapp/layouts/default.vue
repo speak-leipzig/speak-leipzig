@@ -10,8 +10,9 @@ const {lgAndDown} = useDisplay()
       <v-col
         cols="12"
         sm="3"
-        md="2"
-
+        md="3"
+        lg="2"
+        xl="2"
       >
         <v-sheet
           rounded="lg"
@@ -26,7 +27,9 @@ const {lgAndDown} = useDisplay()
       <v-col
         cols="12"
         sm="6"
-        md="8"
+        md="6"
+        lg="8"
+        xl="8"
       >
         <v-sheet
           min-height="70vh"
@@ -42,7 +45,9 @@ const {lgAndDown} = useDisplay()
       <v-col
         cols="12"
         sm="3"
-        md="2"
+        md="3"
+        lg="2"
+        xl="2"
       >
         <v-sheet
           rounded="lg"

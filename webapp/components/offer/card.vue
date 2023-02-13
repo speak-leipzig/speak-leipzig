@@ -30,12 +30,12 @@ const props = defineProps({
             label
           >
               {{ facility.short_name }}
-              <v-tooltip 
-                activator="parent"
-                location="bottom"
-              >
-              {{ facility.name }}
-              </v-tooltip>
+                <v-tooltip 
+                  activator="parent"
+                  location="bottom"
+                >
+                {{ facility.name }}
+                </v-tooltip>
           </v-chip>
           <v-avatar
             color="grey"

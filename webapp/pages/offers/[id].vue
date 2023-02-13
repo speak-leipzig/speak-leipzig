@@ -1,7 +1,10 @@
 <script setup>
+import { useDisplay } from 'vuetify';
+
 const route = useRoute()
 const router = useRouter()
-const { getItemById } = useDirectusItems();
+const { getItemById } = useDirectusItems()
+const { lgAndUp, mobile } = useDisplay()
 
 const offer = await getItemById({
   collection: 'offers',
@@ -49,53 +52,45 @@ function getGMapsLink() {
               <v-list-item-title>
                 <span>
                   <v-avatar
+                    v-if="lgAndUp || mobile"
                     class="mr-2"
                     color="grey"
                     size="32"
                   ></v-avatar>
-                  <v-chip @click="router.push(localePath('/facilities'))">{{ facility.name }}</v-chip>
+                  <v-chip @click="router.push(localePath(`/facilities/${facility.id}`))">{{ mobile ? facility.name : facility.short_name }}</v-chip>
                 </span>
               </v-list-item-title>
             </v-list-item>
             <div v-if="offer.weekday">
-              <v-list-item>
+              <v-list-item class="my-2">
                 <v-list-item-title>
-                  <v-icon class="mr-4">mdi-calendar</v-icon>
+                  <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
                     {{ $t(offer.weekday) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-clock</v-icon>
+                  <br>
+                  <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
                   {{ offer.time_start?.substring(0,5) }} - {{ offer.time_end?.substring(0,5) }}
                 </v-list-item-title>
               </v-list-item>
             </div>
             <!--start week 2 and 3 -->
             <div v-if="offer.weekday_2">
-              <v-list-item>
+              <v-list-item class="my-2">
                 <v-list-item-title>
-                  <v-icon class="mr-4">mdi-calendar</v-icon>
+                  <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
                     {{ $t(offer.weekday_2) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-clock</v-icon>
+                    <br>
+                  <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
                   {{ offer.time_start_2.substring(0,5) }} - {{ offer.time_end_2.substring(0,5) }}
                 </v-list-item-title>
               </v-list-item>
             </div>
             <div v-if="offer.weekday_3">
-              <v-list-item>
+              <v-list-item class="my-2">
                 <v-list-item-title>
-                  <v-icon class="mr-4">mdi-calendar</v-icon>
+                  <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
                     {{ $t(offer.weekday_3) }}
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
-                  <v-icon class="mr-4">mdi-clock</v-icon>
+                    <br>
+                  <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
                   {{ offer.time_start_3.substring(0,5) }} - {{ offer.time_end_3.substring(0,5) }}
                 </v-list-item-title>
               </v-list-item>
