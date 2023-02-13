@@ -43,25 +43,26 @@ function getFacility(offer) {
     <template #left>
       <v-list density="compact">
         <v-list-subheader>{{ $t('level') }}</v-list-subheader>
+          <WrapperMinimize>
+            <v-list-item
+              v-for="(lvl, i) in level"
+              :key="i"
+              :value="lvl"
+              active-color="primary"
+            >
+              <template v-slot:prepend>
+                <v-icon icon="mdi-license"></v-icon>
+              </template>
 
-        <v-list-item
-          v-for="(lvl, i) in level"
-          :key="i"
-          :value="lvl"
-          active-color="primary"
-        >
-          <template v-slot:prepend>
-            <v-icon icon="mdi-license"></v-icon>
-          </template>
-
-          <v-list-item-title v-text="$t(lvl)"></v-list-item-title>
-          <template v-if="lvl.count > 0" v-slot:append>
-            <v-chip
-              color="grey-darken-1 mx-2"
-              text-color="white"
-              label>{{ lvl.count }}</v-chip>
-          </template>
-        </v-list-item>
+              <v-list-item-title v-text="$t(lvl)"></v-list-item-title>
+              <template v-if="lvl.count > 0" v-slot:append>
+                <v-chip
+                  color="grey-darken-1 mx-2"
+                  text-color="white"
+                  label>{{ lvl.count }}</v-chip>
+              </template>
+            </v-list-item>
+          </WrapperMinimize>
       </v-list>
     </template>
 
