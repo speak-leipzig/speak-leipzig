@@ -15,8 +15,13 @@ const facilities = await getItems({
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
-    <v-row v-for="facility in facilities" :key="facility.id" class="mt-5">
-      <FacilityCard :value="facility"></FacilityCard>
+    <v-row class="my-2" width="100%">
+      <v-col cols="12" sm="12" md="6" lg="4"
+        v-for="facility in facilities"
+        :key="facility.id"
+      >
+        <FacilityCard min-height="150px" :facility="facility"></FacilityCard>
+      </v-col>
     </v-row>
   </NuxtLayout>
 </template>

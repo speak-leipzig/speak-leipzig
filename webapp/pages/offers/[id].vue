@@ -1,4 +1,3 @@
-import { useDisplay } from 'vuetify';
 <script setup>
 import { useDisplay } from 'vuetify';
 
@@ -58,7 +57,7 @@ function getGMapsLink() {
                     color="grey"
                     size="32"
                   ></v-avatar>
-                  <v-chip @click="router.push(localePath('/facilities'))">{{ mobile ? facility.name : facility.short_name }}</v-chip>
+                  <v-chip @click="router.push(localePath(`/facilities/${facility.id}`))">{{ mobile ? facility.name : facility.short_name }}</v-chip>
                 </span>
               </v-list-item-title>
             </v-list-item>
