@@ -2,6 +2,7 @@
 import { useDisplay } from 'vuetify'
 
 const { md } = useDisplay()
+const { getThumbnail: img } = useDirectusFiles()
 const router = useRouter()
 const localePath = useLocalePath()
 const props = defineProps({
@@ -17,7 +18,7 @@ const props = defineProps({
     <v-row>
       <v-col cols="2">
       <v-avatar
-          color="grey"
+          :image="img(facility.logo, 'fit', 56, 56)"
           size="46"
           class="my-3 mx-4"
         ></v-avatar>
