@@ -18,40 +18,13 @@ const showLevels = $ref(false)
         variant="fab" 
         @click="showLevels = !showLevels"
       >
-        <v-icon :class="!showLevels ? 'blob' : ''" size="x-large">
+        <v-icon 
+					:class="!showLevels ? 'blob' : ''" size="x-large"
+					style="border-radius: 50%;"
+				>
           mdi-chevron-{{showLevels ? 'up' : 'down'}}
         </v-icon>
       </v-btn>
     </div>
   </div>
 </template>
-
-<style scope>
-.blob {
-	border-radius: 50%;
-	margin: 10px;
-	height: 20px;
-	width: 20px;
-
-	box-shadow: 0 0 0 0 rgb(245, 245, 245);
-	transform: scale(1);
-	animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-	0% {
-		transform: scale(1);
-		box-shadow: 0 0 0 0 rgb(230, 230, 230);
-	}
-
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
-	}
-
-	100% {
-		transform: scale(1);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-	}
-}
-</style>

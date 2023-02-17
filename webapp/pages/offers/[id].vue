@@ -3,6 +3,7 @@ import { useDisplay } from 'vuetify';
 
 const route = useRoute()
 const router = useRouter()
+const { getThumbnail: img } = useDirectusFiles()
 const { getItemById } = useDirectusItems()
 const { lgAndUp, mobile } = useDisplay()
 
@@ -54,7 +55,7 @@ function getGMapsLink() {
                   <v-avatar
                     v-if="lgAndUp || mobile"
                     class="mr-2"
-                    color="grey"
+                    :image="img(facility.logo, 'fit', 32, 32)"
                     size="32"
                   ></v-avatar>
                   <v-chip @click="router.push(localePath(`/facilities/${facility.id}`))">{{ mobile ? facility.name : facility.short_name }}</v-chip>

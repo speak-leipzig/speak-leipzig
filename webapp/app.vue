@@ -65,4 +65,27 @@ const router = useRouter()
   box-shadow:  20px 20px 40px #bcbbbb,
              -20px -20px 40px #ffffff;
 }
+
+.blob {
+	box-shadow: 0 0 0 0 rgb(245, 245, 245);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgb(230, 230, 230);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 15px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
 </style>

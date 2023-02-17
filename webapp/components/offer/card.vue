@@ -1,5 +1,6 @@
 <script setup>
 const router = useRouter()
+const { getThumbnail: img } = useDirectusFiles()
 const localePath = useLocalePath()
 const props = defineProps({
   offer:{
@@ -38,7 +39,7 @@ const props = defineProps({
                 </v-tooltip>
           </v-chip>
           <v-avatar
-            color="grey"
+            :image="img(facility.logo, 'fit', 32, 32)"
             size="32"
           ></v-avatar>
         </div>

@@ -1,5 +1,6 @@
 <script setup>
 const route = useRoute()
+const { getThumbnail: img } = useDirectusFiles()
 const { getItemById } = useDirectusItems()
 
 const facility = await getItemById({
@@ -15,7 +16,7 @@ const facility = await getItemById({
     <div class="text-center">
       <v-avatar 
         size="180"
-        color="grey"
+        :image="img(facility.logo, 'fit', 180, 180)"
       ></v-avatar>
       <h1>{{ facility.name }}</h1>
       <h3>{{ facility.short_name }}</h3>
