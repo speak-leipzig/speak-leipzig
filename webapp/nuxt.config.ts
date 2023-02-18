@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     "nuxt-directus"
   ],
+  buildModules: [
+    '@nuxtjs/pwa',
+  ],
   app: {
     head:{
       title: 'Speak Leipzig',
@@ -58,6 +61,19 @@ export default defineNuxtConfig({
   },
   build: {
     transpile: ['vuetify'],
+  },
+  pwa: {
+    manifest: {
+      name: 'Speak Leipzig',
+      short_name: 'Speak Leipzig',
+      display: 'standalone',
+      background_color: '#ffffff',
+      theme_color: '#ede1fd',
+      description: 'Here you can find language courses in Leipzig.',
+    },
+    icon: {
+      source: '/android-chrome-192x192.png',
+    }
   },
   vite: {
     define: {
