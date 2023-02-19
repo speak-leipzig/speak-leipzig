@@ -1,12 +1,29 @@
 <script setup>
+import { getGMapsLink } from '~~/utils/gmaps';
 const route = useRoute()
 const { getThumbnail: img } = useDirectusFiles()
-const { getItemById } = useDirectusItems()
+const { getItemById, getItems } = useDirectusItems()
 
 const facility = await getItemById({
   collection: 'facilities',
   id: route.params.id
 })
+
+const locations = await getItems({
+  collection: 'locations',
+  params: {
+    filter: {
+      facility: {
+        _in: facility.locations
+      }
+    }
+  }
+})
+
+function gMapsLink() {
+  const { street, no, zip, city } = location
+  return getGMapsLink(street, no, zip, city)
+}
 
 </script>
 
@@ -20,16 +37,26 @@ const facility = await getItemById({
       ></v-avatar>
       <h1>{{ facility.name }}</h1>
       <h3>{{ facility.short_name }}</h3>
-    <WrapperTranslation v-slot="{ translation }" collection="facilities" :id="route.params.id">
-      <DynamicHead :title="facility.name" :description="translation.short_description"/>
-      <br>
-      <span class="my-3" v-html="translation.short_description"></span>
-      <br>
-      <span v-html="translation.text"></span>
-    </WrapperTranslation>
-    <v-row v-for="facility in facilities" :key="facility.id" class="mt-5">
-      <FacilityCard class="mx-auto" :facility="facility"></FacilityCard>
-    </v-row>
-  </div>
+      <WrapperTranslation v-slot="{ translation }" collection="facilities" :id="route.params.id">
+        <DynamicHead :title="facility.name" :description="translation.short_description"/>
+        <br>
+        <span class="my-3" v-html="translation.short_description"></span>
+        <br>
+        <span v-html="translation.text"></span>
+      </WrapperTranslation>
+    </div>
+    <template #left v-if="facility.web || false">
+      <v-card elevation="0">
+        <v-card-title class="mt-2">
+          Infos
+        </v-card-title>
+        <v-card-text>
+          <v-icon>mdi-web</v-icon> 
+          <a :href="facility.web" target="_blank" rel="noopener noreferrer" style="all: none;">
+             Web
+          </a>
+        </v-card-text>
+      </v-card>
+    </template>
   </NuxtLayout>
 </template>

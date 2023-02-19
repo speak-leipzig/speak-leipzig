@@ -1,5 +1,6 @@
 <script setup>
 import { useDisplay } from 'vuetify';
+import { getGMapsLink } from '~~/utils/gmaps';
 
 const route = useRoute()
 const router = useRouter()
@@ -28,9 +29,9 @@ const getFacility = async () => {
 })}
 const facility = await getFacility()
 
-function getGMapsLink() {
+function gMapsLink() {
   const { street, no, zip, city } = location
-  return `https://www.google.com/maps/search/?api=1&query=${street}%20${no},%20${zip}%20${city}`
+  return getGMapsLink(street, no, zip, city)
 }
 </script>
 
@@ -118,7 +119,7 @@ function getGMapsLink() {
       </v-no-ssr>
     </template>
     <template #right v-if="offer.location && !offer.online">
-      <v-card elevation="0" rounded="5" :href="getGMapsLink()">
+      <v-card elevation="0" rounded="5" :href="gMapsLink()">
         <v-img
             class="bg-white"
             rounded="lg"
