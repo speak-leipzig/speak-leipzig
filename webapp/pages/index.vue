@@ -9,7 +9,7 @@ const localePath = useLocalePath()
       <h1 class="mb-10" v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
-    <dev class="d-flex justify-space-around mt-15">
+    <div class="d-flex justify-space-around mt-15">
       <v-btn
         color="purple blob"
         variant="outlined"
@@ -18,6 +18,6 @@ const localePath = useLocalePath()
       >
         {{ $t('offers') }}
       </v-btn>
-    </dev>
+    </div>
   </NuxtLayout>
 </template>
