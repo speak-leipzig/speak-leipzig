@@ -81,7 +81,7 @@ function getGMapsLink() {
                     {{ $t(offer.weekday_2) }}
                     <br>
                   <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
-                  {{ offer.time_start_2.substring(0,5) }} - {{ offer.time_end_2.substring(0,5) }}
+                  {{ offer.time_start_2?.substring(0,5) }} - {{ offer.time_end_2?.substring(0,5) }}
                 </v-list-item-title>
               </v-list-item>
             </div>
@@ -92,7 +92,7 @@ function getGMapsLink() {
                     {{ $t(offer.weekday_3) }}
                     <br>
                   <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
-                  {{ offer.time_start_3.substring(0,5) }} - {{ offer.time_end_3.substring(0,5) }}
+                  {{ offer.time_start_3?.substring(0,5) }} - {{ offer.time_end_3?.substring(0,5) }}
                 </v-list-item-title>
               </v-list-item>
             </div>
