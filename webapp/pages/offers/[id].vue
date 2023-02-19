@@ -43,71 +43,79 @@ function getGMapsLink() {
       <div class="my-10" v-html="translation.text"></div>
     </WrapperTranslation>
     <template #left v-if="facility || offer.weekday">
-      <v-card elevation="0">
-        <v-card-title class="mt-2">
-          QuickInfos
-        </v-card-title>
-        <v-card-text>
-          <v-list class="ml-n2">
-            <v-list-item v-if="facility">
-              <v-list-item-title>
-                <span>
-                  <v-avatar
-                    v-if="lgAndUp || mobile"
-                    class="mr-2"
-                    :image="img(facility.logo, 'fit', 32, 32)"
-                    size="32"
-                  ></v-avatar>
-                  <v-chip @click="router.push(localePath(`/facilities/${facility.id}`))">{{ mobile ? facility.name : facility.short_name }}</v-chip>
-                </span>
-              </v-list-item-title>
-            </v-list-item>
-            <WrapperTranslation v-slot="{ translation }" collection="offers" :id="route.params.id">
-              <v-list-item v-if="translation.rhythm">
+      <v-no-ssr>
+        <v-card elevation="0">
+          <v-card-title class="mt-2">
+            QuickInfos
+          </v-card-title>
+          <v-card-text>
+            <v-list class="ml-n2">
+              <v-list-item v-if="facility">
                 <v-list-item-title>
-                  <v-icon v-if="lgAndUp || mobile">mdi-calendar-sync</v-icon> 
-                  {{ translation.rhythm }}
+                  <span>
+                    <v-avatar
+                      v-if="lgAndUp || mobile"
+                      class="mr-2"
+                      :image="img(facility.logo, 'fit', 32, 32)"
+                      size="32"
+                    ></v-avatar>
+                    <v-chip @click="router.push(localePath(`/facilities/${facility.id}`))">{{ mobile ? facility.name : facility.short_name }}</v-chip>
+                  </span>
                 </v-list-item-title>
               </v-list-item>
-            </WrapperTranslation>
-            <div v-if="offer.weekday">
-              <v-list-item class="my-2">
-                <v-list-item-title>
-                  <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
-                    {{ $t(offer.weekday) }}
-                  <br>
-                  <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
-                  {{ offer.time_start?.substring(0,5) }} - {{ offer.time_end?.substring(0,5) }}
-                </v-list-item-title>
-              </v-list-item>
-            </div>
-            <!--start week 2 and 3 -->
-            <div v-if="offer.weekday_2">
-              <v-list-item class="my-2">
-                <v-list-item-title>
-                  <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
-                    {{ $t(offer.weekday_2) }}
+              <WrapperTranslation v-slot="{ translation }" collection="offers" :id="route.params.id">
+                <v-list-item v-if="translation.rhythm" class="mb-n3">
+                  <v-list-item-title>
+                    <v-icon v-if="lgAndUp || mobile">mdi-calendar-sync</v-icon> 
+                    {{ translation.rhythm }}
+                  </v-list-item-title>
+                </v-list-item>
+              </WrapperTranslation>
+              <div v-if="offer.weekday">
+                <v-list-item class="my-2">
+                  <v-list-item-title>
+                    <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
+                      {{ $t(offer.weekday) }}
                     <br>
-                  <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
-                  {{ offer.time_start_2?.substring(0,5) }} - {{ offer.time_end_2?.substring(0,5) }}
-                </v-list-item-title>
-              </v-list-item>
-            </div>
-            <div v-if="offer.weekday_3">
-              <v-list-item class="my-2">
-                <v-list-item-title>
-                  <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
-                    {{ $t(offer.weekday_3) }}
-                    <br>
-                  <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
-                  {{ offer.time_start_3?.substring(0,5) }} - {{ offer.time_end_3?.substring(0,5) }}
-                </v-list-item-title>
-              </v-list-item>
-            </div>
-            <!--end week 2 and 3 -->
-          </v-list>
-        </v-card-text>
-      </v-card>
+                    <span v-if="offer.time_start">
+                      <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
+                      {{ offer.time_start?.substring(0,5) }} <span v-if="offer.time_end">- {{ offer.time_end?.substring(0,5) }}</span>
+                    </span>
+                  </v-list-item-title>
+                </v-list-item>
+              </div>
+              <!--start week 2 and 3 -->
+              <div v-if="offer.weekday_2">
+                <v-list-item class="my-2">
+                  <v-list-item-title>
+                    <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
+                      {{ $t(offer.weekday_2) }}
+                      <br>
+                      <span v-if="offer.time_start_2">
+                        <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
+                        {{ offer.time_start_2?.substring(0,5) }} <span v-if="offer.time_end_2">- {{ offer.time_end_2?.substring(0,5) }}</span>
+                      </span>
+                  </v-list-item-title>
+                </v-list-item>
+              </div>
+              <div v-if="offer.weekday_3">
+                <v-list-item class="my-2">
+                  <v-list-item-title>
+                    <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
+                      {{ $t(offer.weekday_3) }}
+                      <br>
+                      <span v-if="offer.time_start_3">
+                        <v-icon v-if="lgAndUp || mobile">mdi-clock</v-icon>
+                        {{ offer.time_start_3?.substring(0,5) }} <span v-if="offer.time_end_3">- {{ offer.time_end_3?.substring(0,5) }}</span>
+                      </span>
+                  </v-list-item-title>
+                </v-list-item>
+              </div>
+              <!--end week 2 and 3 -->
+            </v-list>
+          </v-card-text>
+        </v-card>
+      </v-no-ssr>
     </template>
     <template #right v-if="offer.location && !offer.online">
       <v-card elevation="0" rounded="5" :href="getGMapsLink()">
