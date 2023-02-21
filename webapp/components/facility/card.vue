@@ -14,7 +14,7 @@ const props = defineProps({
 
 
 <template>
-  <v-card class="card ma-3" width="900px" max-width="95%" @click="router.push(localePath(`/facilities/${facility.id}`))">
+  <v-card class="card ma-3" width="900px" max-width="95%" min-height="180px" @click="router.push(localePath(`/facilities/${facility.id}`))">
     <v-row>
       <v-col cols="2">
       <v-avatar

@@ -20,7 +20,7 @@ const facilities = await getItems({
         v-for="facility in facilities"
         :key="facility.id"
       >
-        <FacilityCard min-height="150px" :facility="facility"></FacilityCard>
+        <FacilityCard :facility="facility"></FacilityCard>
       </v-col>
     </v-row>
   </NuxtLayout>
