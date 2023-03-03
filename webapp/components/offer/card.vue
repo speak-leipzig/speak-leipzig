@@ -27,25 +27,25 @@ const overflow = (str, limit) => {
       <v-card-title class="d-flex flex-wrap justify-space-between">
         <span v-html="overflow(translation.title, 35)" class="headline"></span>
         <v-spacer></v-spacer>
-          <div v-if="facility" style="margin-left: auto;">
-            <v-chip
-              color="grey-darken-1 mx-2"
-              text-color="white"
-              label
-            >
-                {{ facility.short_name }}
-                  <v-tooltip 
-                    activator="parent"
-                    location="bottom"
-                  >
-                  {{ facility.name }}
-                  </v-tooltip>
-            </v-chip>
-            <v-avatar
-              :image="img(facility.logo, 'fit', 32, 32)"
-              size="32"
-            ></v-avatar>
-          </div>
+        <div v-if="facility" style="margin-left: auto;">
+          <v-chip
+            color="grey-darken-1 mx-2"
+            text-color="white"
+            label
+          >
+              {{ facility.short_name }}
+                <v-tooltip 
+                  activator="parent"
+                  location="bottom"
+                >
+                {{ facility.name }}
+                </v-tooltip>
+          </v-chip>
+          <v-avatar
+            :image="img(facility.logo, 'fit', 32, 32)"
+            size="32"
+          ></v-avatar>
+        </div>
       </v-card-title>
       <v-card-subtitle class="d-flex justify-start">
         <div v-for="lvl in offer.level" :key="lvl">
