@@ -7,12 +7,6 @@ const offers = await getItems({
   collection: 'offers'
 });
 
-let levelFilter = $ref('')
-filteredOffers = computed(() => {
-  if (!level) return offers
-  return offers.filter(o => o.level.includes(levelFilter))
-})
-
 const facilities = await getItems({
   collection: 'facilities'
 });
@@ -39,10 +33,9 @@ function getFacility(offer) {
     </WrapperTranslation>
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
-        v-for="offer in filteredOffers('a2')"
+        v-for="offer in offers"
         :key="offer.id"
       >
-      {{ offer }}
         <OfferCard :offer="offer" :facility="getFacility(offer)"/>
       </v-col>
     </v-row>
