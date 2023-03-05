@@ -21,6 +21,7 @@ const overflow = (str, limit) => {
     class="card mx-auto py-2"
     outlined
     max-width="400px"
+    min-height="300px"
     @click="router.push(localePath(`/offers/${offer.id}`))"
   >
     <WrapperTranslation v-slot="{ translation }" collection="offers" :id="offer.id">
