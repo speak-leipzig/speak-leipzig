@@ -10,6 +10,9 @@ const props = defineProps({
     required: false
   }
 })
+const overflow = (str, limit) => {
+  return str.slice(0, limit) + (str.length > limit ? '...' : '')
+}
 </script>
 
 
@@ -18,13 +21,14 @@ const props = defineProps({
     class="card mx-auto py-2"
     outlined
     max-width="400px"
+    min-height="300px"
     @click="router.push(localePath(`/offers/${offer.id}`))"
   >
     <WrapperTranslation v-slot="{ translation }" collection="offers" :id="offer.id">
-      <v-card-title class="d-flex justify-space-between">
-        <span v-html="translation.title" class="headline"></span>
+      <v-card-title class="d-flex flex-wrap justify-space-between">
+        <span v-html="overflow(translation.title, 35)" class="headline"></span>
         <v-spacer></v-spacer>
-        <div v-if="facility">
+        <div v-if="facility" style="margin-left: auto;">
           <v-chip
             color="grey-darken-1 mx-2"
             text-color="white"
