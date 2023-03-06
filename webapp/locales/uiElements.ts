@@ -1,6 +1,7 @@
 export default {
   en: {
-    button: {
+      register: 'Register',
+      registration_accepted: 'Registration accepted',
       save: 'Save',
       cancel: 'Cancel',
       delete: 'Delete',
@@ -15,11 +16,19 @@ export default {
       finish: 'Finish',
       submit: 'Submit',
       search: 'Search',
-      clear: 'Clear' 
-    }
+      clear: 'Clear',
+      first_name: 'First Name',
+      last_name: 'Last Name',
+      email: 'Email',
+      phone: 'Phone',
+      password: 'Password',
+      age: 'Age',
+      required: 'Required',
+      invalid: 'Invalid',
   },
   de: {
-    button: {
+      register: 'Anmelden',
+      registration_accepted: 'Anmeldung akzeptiert',
       save: 'Speichern',
       cancel: 'Abbrechen',
       delete: 'Löschen',
@@ -34,11 +43,19 @@ export default {
       finish: 'Fertigstellen',
       submit: 'Absenden',
       search: 'Suchen',
-      clear: 'Löschen'
-    }
+      clear: 'Löschen',
+      first_name: 'Vorname',
+      last_name: 'Nachname',
+      email: 'Email',
+      phone: 'Telefon',
+      password: 'Passwort',
+      age: 'Alter',
+      required: 'Erforderlich',
+      invalid: 'Ungültig',
   },
   ua: {
-    button: {
+      register: 'Зареєструватися',
+      registration_accepted: 'Реєстрація прийнята',
       save: 'Зберегти',
       cancel: 'Скасувати',
       delete: 'Видалити',
@@ -53,11 +70,19 @@ export default {
       finish: 'Завершити',
       submit: 'Відправити',
       search: 'Пошук',
-      clear: 'Очистити'
-    }
+      clear: 'Очистити',
+      first_name: 'Ім\'я',
+      last_name: 'Прізвище',
+      email: 'Email',
+      phone: 'Телефон',
+      password: 'Пароль',
+      age: 'Вік',
+      required: 'Обов\'язково',
+      invalid: 'Невірно',
   },
   ru: {
-    button: {
+      register: 'Зарегистрироваться',
+      registration_accepted: 'Регистрация принята',
       save: 'Сохранить',
       cancel: 'Отменить',
       delete: 'Удалить',
@@ -72,7 +97,14 @@ export default {
       finish: 'Завершить',
       submit: 'Отправить',
       search: 'Поиск',
-      clear: 'Очистить'
-    }
+      clear: 'Очистить',
+      first_name: 'Имя',
+      last_name: 'Фамилия',
+      email: 'Email',
+      phone: 'Телефон',
+      password: 'Пароль',
+      age: 'Возраст',
+      required: 'Обязательно',
+      invalid: 'Неверно',
   }
 }
