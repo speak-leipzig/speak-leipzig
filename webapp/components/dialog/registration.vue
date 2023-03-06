@@ -24,15 +24,14 @@ const form = $ref({
   level: ''
 })
 
-function submit() {
+async function submit() {
   const items = new Array(1).fill(form)
-  console.log(items)
   if (form.last_name === '') return
   if (!validatePhoneNumber(form.phone)) {
     form.phone = ''
     return
   }
-  createItems({collection:'registrations', items})
+  await createItems({collection:'registrations', items})
   accepted.value = true
   dialog.value = false
 }
