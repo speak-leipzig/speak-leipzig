@@ -43,6 +43,9 @@ function gMapsLink() {
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>
     </WrapperTranslation>
+    <v-no-ssr>
+      <DialogRegistration v-if="offer.allow_registrations" :offer="route.params.id" class="my-3"></DialogRegistration>
+    </v-no-ssr>
     <template #left v-if="facility || offer.weekday">
       <v-no-ssr>
         <v-card elevation="0">
