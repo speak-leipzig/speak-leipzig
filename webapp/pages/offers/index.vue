@@ -7,12 +7,12 @@ const offers = await getItems({
   collection: 'offers'
 });
 
-const selectedLevel = ref('')
+const selectedLevel = $ref('')
 
 const filteredOffers = computed(() => {
   return offers.filter(o => {
-    if (selectedLevel.value === '') return true
-    return o.level.includes(selectedLevel.value)
+    if (selectedLevel === '') return true
+    return o.level.includes(selectedLevel)
   })
 })
 
