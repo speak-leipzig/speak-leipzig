@@ -56,13 +56,15 @@ const router = useRouter()
 .card {
   cursor: pointer;
   border-radius: 6px;
-  background: #ffffff;
-  box-shadow:  10px 10px 20px #bfbfbf,
+  border-color: #d5d4d400;
+  background: #faf9f9;
+  box-shadow:  10px 10px 20px #d5d4d4,
               -10px -10px 20px #ffffff;
 }
 .card:hover{
   background: #faf9f9;
-  box-shadow:  20px 20px 40px #bcbbbb,
+  border-color: purple;
+  box-shadow:  20px 20px 40px #d5d4d4,
              -20px -20px 40px #ffffff;
 }
 
