@@ -8,7 +8,7 @@ const offers = await getItems({
 });
 
 
-const selectedLevel = ref('')
+const selectedLevel = $ref('')
 const search = $ref('')
 
 
