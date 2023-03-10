@@ -7,6 +7,15 @@ const offers = await getItems({
   collection: 'offers'
 });
 
+const selectedLevel = ref('')
+
+const filteredOffers = computed(() => {
+  return offers.filter(o => {
+    if (selectedLevel.value === '') return true
+    return o.level.includes(selectedLevel.value)
+  })
+})
+
 const facilities = await getItems({
   collection: 'facilities'
 });
@@ -22,6 +31,13 @@ function getFacility(offer) {
   return facilities.find(f => f.id === facilityId)
 }
 
+const level_count = computed(() => {
+  return level.value.reduce((acc, lvl) => {
+    acc[lvl] = offers.filter(o => o.level.includes(lvl)).length
+    return acc
+  }, {})
+})
+
 </script>
 
 <template>
@@ -33,9 +49,10 @@ function getFacility(offer) {
     </WrapperTranslation>
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
-        v-for="offer in offers"
+        v-for="offer in filteredOffers"
         :key="offer.id"
       >
+      
         <OfferCard :offer="offer" :facility="getFacility(offer)"/>
       </v-col>
     </v-row>
@@ -49,17 +66,20 @@ function getFacility(offer) {
               :key="i"
               :value="lvl"
               active-color="primary"
+              @click="selectedLevel == lvl ? selectedLevel = '' : selectedLevel=lvl"
             >
               <template v-slot:prepend>
                 <v-icon icon="mdi-license"></v-icon>
               </template>
 
               <v-list-item-title v-text="$t(lvl)"></v-list-item-title>
-              <template v-if="lvl.count > 0" v-slot:append>
+              <template v-if="level_count[lvl] > 0" v-slot:append>
                 <v-chip
                   color="grey-darken-1 mx-2"
                   text-color="white"
-                  label>{{ lvl.count }}</v-chip>
+                  label>
+                    {{ level_count[lvl] }}
+                  </v-chip>
               </template>
             </v-list-item>
           </WrapperMinimize>
