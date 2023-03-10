@@ -19,7 +19,7 @@ const overflow = (str, limit) => {
 <template>
   <v-card
     class="card mx-auto py-2"
-    outlined
+    variant="outlined"
     max-width="400px"
     min-height="300px"
     @click="router.push(localePath(`/offers/${offer.id}`))"
