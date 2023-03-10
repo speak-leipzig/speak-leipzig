@@ -8,6 +8,7 @@ const offers = await getItems({
 });
 
 const selectedLevel = ref('')
+const search = $ref('')
 
 const filteredOffers = computed(() => {
   return offers.filter(o => {
