@@ -1,7 +1,7 @@
 version: '3'
 services:
   webapp-demo:
-    image: webapp:rc-03.06.01.38-demo
+    image: webapp:rc-03.10.22.04-demo
     build: ./webapp
     ports:
       - '${PORTBASE}81:3000'
