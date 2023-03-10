@@ -1,6 +1,6 @@
 export default {
   en: {
-    level: 'level',
+    level: 'Level',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',
@@ -24,7 +24,7 @@ export default {
     none: 'nicht angegeben',
   },
   ua: {
-    level: 'рівень',
+    level: 'Рівень',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',
@@ -36,7 +36,7 @@ export default {
     none: 'не вказано',
   },
   ru: {
-    level: 'уровень',
+    level: 'Уровень',
     a0: 'A0',
     a1: 'A1',
     a2: 'A2',

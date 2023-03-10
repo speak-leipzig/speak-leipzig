@@ -47,6 +47,14 @@ const level_count = computed(() => {
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
+    <v-text-field
+      v-model="search"
+      variant="outlined"
+      color="purple"
+      prepend-icon="mdi-magnify"
+      :label="$t('search')"
+      single-line>
+    </v-text-field>
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
         v-for="offer in filteredOffers"
