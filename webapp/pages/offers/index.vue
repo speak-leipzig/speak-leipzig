@@ -66,7 +66,6 @@ const district_count = $computed(() => {
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
-    district_count: {{ district_count }}
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
         v-for="offer in filteredOffers"
