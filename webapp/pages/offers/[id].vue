@@ -43,7 +43,6 @@ function gMapsLink() {
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>
     </WrapperTranslation>
-    {{ offer }}
     <v-no-ssr>
       <DialogRegistration v-if="offer.allow_registrations" :offer="route.params.id" class="my-3"></DialogRegistration>
     </v-no-ssr>
@@ -108,10 +107,6 @@ function gMapsLink() {
                   <v-icon v-if="lgAndUp || mobile">mdi-email</v-icon>
                   <a :href="`mailto:${offer.contact_mail}`" target="_blank"> {{ offer.contact_mail }}</a>
                 </div>
-
-                <v-list-item-subtitle>
-                  
-                </v-list-item-subtitle>
               </v-list-item>
               <!--start week 2 and 3 -->
               <div v-if="offer.weekday_2">
