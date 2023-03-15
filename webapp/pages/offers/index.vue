@@ -43,9 +43,16 @@ function getFacility(offer) {
   return facilities.find(f => f.id === facilityId)
 }
 
-const level_count = computed(() => {
+const level_count = $computed(() => {
   return level.value.reduce((acc, lvl) => {
     acc[lvl] = offers.filter(o => o.level.includes(lvl)).length
+    return acc
+  }, {})
+})
+
+const district_count = $computed(() => {
+  return districts.reduce((acc, dist) => {
+    acc[dist] = offers.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
     return acc
   }, {})
 })
@@ -59,6 +66,7 @@ const level_count = computed(() => {
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
+    district_count: {{ district_count }}
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
         v-for="offer in filteredOffers"
@@ -110,12 +118,12 @@ const level_count = computed(() => {
               @click="selectedDistrcit == district ? selectedDistrcit = '' : selectedDistrcit=district"
             >
               <v-list-item-title v-text="district"></v-list-item-title>
-              <template v-if="level_count[lvl] > 0" v-slot:append>
+              <template v-if="district_count[district] > 0" v-slot:append>
                 <v-chip
                   color="grey-darken-1 mx-2"
                   text-color="white"
                   label>
-                    {{ level_count[lvl] }}
+                    {{ district_count[district] }}
                   </v-chip>
               </template>
             </v-list-item>
