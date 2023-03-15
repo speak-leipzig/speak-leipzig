@@ -13,7 +13,7 @@ const selectedDistrcit = $ref('')
 const filteredOffers = $computed(() => {
   return offers.filter(o => {
     const  lvl = selectedLevel === '' || o.level.includes(selectedLevel)
-    const distrcit = true //TODO: locations.filter(l => l.id === o.location).
+    const distrcit = selectedDistrcit === '' || locations.filter(l => l.id === o.location).map(l => l.district).includes(selectedDistrcit)
     return lvl && distrcit
   })
 })
@@ -59,8 +59,6 @@ const level_count = computed(() => {
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
-    {{ districts }}
-    {{ selectedDistrcit }}
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
         v-for="offer in filteredOffers"
@@ -102,7 +100,7 @@ const level_count = computed(() => {
 
     <template #right>
       <v-list density="compact">
-        <v-list-subheader>Stadtteil</v-list-subheader>
+        <v-list-subheader>{{ $t('district') }}</v-list-subheader>
           <WrapperMinimize>
             <v-list-item
               v-for="district in districts"
