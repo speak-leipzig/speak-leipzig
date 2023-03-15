@@ -8,11 +8,13 @@ const offers = await getItems({
 });
 
 const selectedLevel = $ref('')
+const selectedDistrcit = $ref('')
 
-const filteredOffers = computed(() => {
+const filteredOffers = $computed(() => {
   return offers.filter(o => {
-    if (selectedLevel === '') return true
-    return o.level.includes(selectedLevel)
+    const  lvl = selectedLevel === '' || o.level.includes(selectedLevel)
+    const distrcit = selectedDistrcit === '' || locations.filter(l => l.id === o.location).map(l => l.district).includes(selectedDistrcit)
+    return lvl && distrcit
   })
 })
 
@@ -23,6 +25,16 @@ const facilities = await getItems({
 const locations = await getItems({
   collection: 'locations'
 });
+
+const districts = $computed(() => {
+  return locations
+    .filter(
+      l => offers //TODO: FilteredOffers
+        .map(o => o.location)
+        .includes(l.id)
+    )
+    .map(l => l.district)
+})
 
 function getFacility(offer) {
   if (!offer.location) return null
@@ -86,30 +98,28 @@ const level_count = computed(() => {
       </v-list>
     </template>
 
-    <template #right v-if="false">
-      <v-list density="compact" class="ma-1">
-        <v-list-subheader>{{ $t('facilities') }}</v-list-subheader>
-
-        <v-list-item
-          v-for="facility in facilities"
-          :key="facility.id"
-          class="my-2"
-          active-color="primary"
-        >
-          <template v-slot:prepend>
-            <v-avatar color="grey">
-            </v-avatar>
-          </template>
-
-          <v-list-item-title>{{ facility.name }}</v-list-item-title>
-          <template v-slot:append>
-            <v-chip
-              v-if="false"
-              color="grey-darken-1 mx-2"
-              text-color="white"
-              label>{{ i }}</v-chip>
-          </template>
-        </v-list-item>
+    <template #right>
+      <v-list density="compact">
+        <v-list-subheader>{{ $t('district') }}</v-list-subheader>
+          <WrapperMinimize>
+            <v-list-item
+              v-for="district in districts"
+              :key="district"
+              :value="district"
+              active-color="primary"
+              @click="selectedDistrcit == district ? selectedDistrcit = '' : selectedDistrcit=district"
+            >
+              <v-list-item-title v-text="district"></v-list-item-title>
+              <template v-if="level_count[lvl] > 0" v-slot:append>
+                <v-chip
+                  color="grey-darken-1 mx-2"
+                  text-color="white"
+                  label>
+                    {{ level_count[lvl] }}
+                  </v-chip>
+              </template>
+            </v-list-item>
+          </WrapperMinimize>
       </v-list>
     </template>
   </NuxtLayout>

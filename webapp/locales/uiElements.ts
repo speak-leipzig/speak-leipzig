@@ -25,6 +25,7 @@ export default {
       age: 'Age',
       required: 'Required',
       invalid: 'Invalid',
+      distrcit: 'District'
   },
   de: {
       register: 'Anmelden',
@@ -52,6 +53,7 @@ export default {
       age: 'Alter',
       required: 'Erforderlich',
       invalid: 'Ungültig',
+      district: 'Stadtteil'
   },
   ua: {
       register: 'Зареєструватися',
@@ -79,6 +81,7 @@ export default {
       age: 'Вік',
       required: 'Обов\'язково',
       invalid: 'Невірно',
+      district: 'Район'
   },
   ru: {
       register: 'Зарегистрироваться',
@@ -106,5 +109,6 @@ export default {
       age: 'Возраст',
       required: 'Обязательно',
       invalid: 'Неверно',
+      district: 'Район'
   }
 }
