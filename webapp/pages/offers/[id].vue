@@ -43,6 +43,7 @@ function gMapsLink() {
       <div class="my-10" v-html="translation.short_description"></div>
       <div class="my-10" v-html="translation.text"></div>
     </WrapperTranslation>
+    {{ offer }}
     <v-no-ssr>
       <DialogRegistration v-if="offer.allow_registrations" :offer="route.params.id" class="my-3"></DialogRegistration>
     </v-no-ssr>
@@ -88,6 +89,30 @@ function gMapsLink() {
                   </v-list-item-title>
                 </v-list-item>
               </div>
+              <v-list-item v-if="offer.contact_show">
+                <v-list-item-title class="mb-n2">
+                  {{ $t('contact') }}
+                </v-list-item-title>
+                <div v-if="offer.contact_name">
+                  <br>
+                  <v-icon v-if="lgAndUp || mobile">mdi-account</v-icon>
+                  {{ offer.contact_name }}
+                </div>
+                <div v-if="offer.contact_phone">
+                  <br>
+                  <v-icon v-if="lgAndUp || mobile">mdi-phone</v-icon>
+                  {{ offer.contact_phone }}
+                </div>
+                <div v-if="offer.contact_mail">
+                  <br>
+                  <v-icon v-if="lgAndUp || mobile">mdi-email</v-icon>
+                  <a :href="`mailto:${offer.contact_mail}`" target="_blank"> {{ offer.contact_mail }}</a>
+                </div>
+
+                <v-list-item-subtitle>
+                  
+                </v-list-item-subtitle>
+              </v-list-item>
               <!--start week 2 and 3 -->
               <div v-if="offer.weekday_2">
                 <v-list-item class="my-2">
