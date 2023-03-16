@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '*/team': {ssr: false},
   },
   modules: [
+    '@nuxt/devtools',
     '@nuxtjs/i18n',
     "nuxt-directus"
   ],
