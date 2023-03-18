@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd ./geocoding && make
-chmod -R a+rx ./dist
+chmod -R a+rwx ./dist
