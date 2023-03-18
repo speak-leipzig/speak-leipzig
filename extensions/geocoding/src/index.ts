@@ -6,6 +6,6 @@ export default defineHook(({ filter, action }) => {
 	});
 
 	action('items.create', () => {
-		console.log('Item created!');
+		console.log('Item wurde erstellt!');
 	});
 });
