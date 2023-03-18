@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/i18n',
-    "nuxt-directus"
+    'nuxt-directus'
   ],
   buildModules: [
     '@nuxtjs/pwa',
