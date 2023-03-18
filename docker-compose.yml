@@ -25,6 +25,12 @@ services:
     networks:
       - directus
 
+  extension-builder:
+    image: extension-builder:rc-_-demo
+    build: ./extensions
+    volumes:
+      - ./extensions/dist:/dist
+
   directus:
     restart: always
     image: directus/directus:latest
@@ -32,7 +38,7 @@ services:
       - '${PORTBASE}55:8055'
     volumes:
       - uploads:/directus/uploads
-      - ./extensions:/directus/extensions
+      - ./extensions/dist:/directus/extensions
     networks:
       - directus
     depends_on:
