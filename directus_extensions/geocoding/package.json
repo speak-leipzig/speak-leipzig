@@ -1,6 +1,6 @@
 {
 	"name": "directus-extension-geocoding",
-	"description": "Please enter a description for your extension",
+	"description": "This hook get a address and return the latitude and longitude",
 	"icon": "extension",
 	"version": "1.0.0",
 	"keywords": [
