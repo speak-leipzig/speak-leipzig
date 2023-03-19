@@ -25,12 +25,6 @@ services:
     networks:
       - directus
 
-  extension-builder:
-    image: extension-builder:rc-_-demo
-    build: ./extensions
-    volumes:
-      - ./extensions/dist:/dist
-
   directus:
     restart: always
     image: directus/directus:latest
@@ -42,9 +36,13 @@ services:
     networks:
       - directus
     depends_on:
-      - extension-builder
       - cache
       - database
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8055"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
     environment:
       KEY: '${KEY}'
       SECRET: '${SECRET}'
@@ -79,6 +77,14 @@ services:
       # Make sure to set this in production
       # (see https://docs.directus.io/reference/environment-variables/#general)
       PUBLIC_URL: 'https://${PUBLIC_URL}'
+
+  extension-builder:
+    image: extension-builder:rc-_-demo
+    build: ./extensions
+    volumes:
+      - ./extensions/dist:/dist
+    depends_on:
+      - directus
 
 networks:
   directus:
