@@ -1,11 +1,8 @@
 #!/bin/bash
 
-sleep 15s
-
-cd ./geocoding && make
-cd ..
-
-cd ./greet && make
-cd ..
+for d in */ ; do
+  cd "$d" && make
+  cd ..
+done
 
 chmod -R a+rwx ./dist
