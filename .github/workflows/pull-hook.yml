@@ -1,6 +1,8 @@
 on:
   push:
     branches: [ main ]
+  release:
+    types: [ published ]
 
 name: pull portainer hook
 jobs:
