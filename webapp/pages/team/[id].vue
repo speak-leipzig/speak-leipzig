@@ -39,7 +39,9 @@ const translation = $computed(() => translations.find((translation) => translati
         <h3>{{ translation.public_title }}</h3>
       </div>
       <br>
-      <p v-html="translation.public_description"></p>
+      <span class="text-center">
+        <p v-html="translation.public_description"></p>
+      </span>
       <br>
       <span v-html="translation.about"></span>
     </div>
