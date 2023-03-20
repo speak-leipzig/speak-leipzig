@@ -52,15 +52,15 @@ const translation = $computed(() => translations.find((translation) => translati
                 <v-icon icon="mdi-email-fast-outline"></v-icon>
               </template>
               <v-list-item-title>
-                <a :href="`mailto:${user.email}`">{{ user.email }}</a>
+                <a :href="`mailto:${user.email}`" target="_blank">{{ user.email }}</a>
               </v-list-item-title>
             </v-list-item>
-            <v-list-item>
+            <v-list-item v-if="user.telegram">
               <template v-slot:prepend>
                 <v-icon icon="mdi-message-fast-outline"></v-icon>
               </template>
               <v-list-item-title>
-                <a :href="``">Telegram</a>
+                <a :href="`https://t.me/${user.telegram}`" target="_blank">Telegram</a>
               </v-list-item-title>
             </v-list-item>
           </WrapperMinimize>

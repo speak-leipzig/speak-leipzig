@@ -7,12 +7,14 @@ const offers = await getItems({
   collection: 'offers'
 });
 
-const selectedLevel = ref('')
+const selectedLevel = $ref('')
+const selectedDistrcit = $ref('')
 
-const filteredOffers = computed(() => {
+const filteredOffers = $computed(() => {
   return offers.filter(o => {
-    if (selectedLevel.value === '') return true
-    return o.level.includes(selectedLevel.value)
+    const  lvl = selectedLevel === '' || o.level.includes(selectedLevel)
+    const distrcit = selectedDistrcit === '' || locations.filter(l => l.id === o.location).map(l => l.district).includes(selectedDistrcit)
+    return lvl && distrcit
   })
 })
 
@@ -24,6 +26,16 @@ const locations = await getItems({
   collection: 'locations'
 });
 
+const districts = $computed(() => {
+  return locations
+    .filter(
+      l => offers //TODO: FilteredOffers
+        .map(o => o.location)
+        .includes(l.id)
+    )
+    .map(l => l.district)
+})
+
 function getFacility(offer) {
   if (!offer.location) return null
   const location = locations.find(l => l.id === offer.location)
@@ -31,9 +43,16 @@ function getFacility(offer) {
   return facilities.find(f => f.id === facilityId)
 }
 
-const level_count = computed(() => {
+const level_count = $computed(() => {
   return level.value.reduce((acc, lvl) => {
     acc[lvl] = offers.filter(o => o.level.includes(lvl)).length
+    return acc
+  }, {})
+})
+
+const district_count = $computed(() => {
+  return districts.reduce((acc, dist) => {
+    acc[dist] = offers.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
     return acc
   }, {})
 })
@@ -47,14 +66,6 @@ const level_count = computed(() => {
       <h1 v-html="translation.title"></h1>
       <span v-html="translation.content"></span>
     </WrapperTranslation>
-    <v-text-field
-      v-model="search"
-      variant="outlined"
-      color="purple"
-      prepend-icon="mdi-magnify"
-      :label="$t('search')"
-      single-line>
-    </v-text-field>
     <v-row class="my-2" width="100%">
       <v-col cols="12" sm="12" md="6" lg="4"
         v-for="offer in filteredOffers"
@@ -94,30 +105,28 @@ const level_count = computed(() => {
       </v-list>
     </template>
 
-    <template #right v-if="false">
-      <v-list density="compact" class="ma-1">
-        <v-list-subheader>{{ $t('facilities') }}</v-list-subheader>
-
-        <v-list-item
-          v-for="facility in facilities"
-          :key="facility.id"
-          class="my-2"
-          active-color="primary"
-        >
-          <template v-slot:prepend>
-            <v-avatar color="grey">
-            </v-avatar>
-          </template>
-
-          <v-list-item-title>{{ facility.name }}</v-list-item-title>
-          <template v-slot:append>
-            <v-chip
-              v-if="false"
-              color="grey-darken-1 mx-2"
-              text-color="white"
-              label>{{ i }}</v-chip>
-          </template>
-        </v-list-item>
+    <template #right>
+      <v-list density="compact">
+        <v-list-subheader>{{ $t('district') }}</v-list-subheader>
+          <WrapperMinimize>
+            <v-list-item
+              v-for="district in districts"
+              :key="district"
+              :value="district"
+              active-color="primary"
+              @click="selectedDistrcit == district ? selectedDistrcit = '' : selectedDistrcit=district"
+            >
+              <v-list-item-title v-text="district"></v-list-item-title>
+              <template v-if="district_count[district] > 0" v-slot:append>
+                <v-chip
+                  color="grey-darken-1 mx-2"
+                  text-color="white"
+                  label>
+                    {{ district_count[district] }}
+                  </v-chip>
+              </template>
+            </v-list-item>
+          </WrapperMinimize>
       </v-list>
     </template>
   </NuxtLayout>

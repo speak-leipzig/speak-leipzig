@@ -66,11 +66,11 @@ const description = $computed(() => descriptions.find((description) => descripti
             <v-list-item-title class="d-flex justify-start ma-1">
               <span class="mr-7">
                 <v-icon class="mr-4">mdi-email-fast-outline</v-icon>
-                <a :href="`mailto:${member.email}`">{{ member.email }}</a>
+                <a :href="`mailto:${member.email}`" target="_blank">{{ member.email }}</a>
               </span>
-              <span>
+              <span v-if="member.telegram">
                 <v-icon class="mr-4">mdi-message-fast-outline</v-icon>
-                <a :href="``">Telegram</a>
+                <a :href="`https://t.me/${member.telegram}`" target="_blank">Telegram</a>
               </span>
             </v-list-item-title>
           </v-list-item>
