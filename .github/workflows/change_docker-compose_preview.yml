@@ -1,0 +1,20 @@
+on:
+  release:
+    types: [ published ]
+
+name: deploy on pre-release
+jobs:
+  change_version:
+    if: "github.event.release.prerelease"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set prelease tag
+        uses: jaywcjlove/github-action-modify-file-content@main
+        with:
+          token: ${{ secrets.TOKEN }}
+          path: docker-compose.yml
+          body: "{{date:MM.DD.HH.mm}}"
+          openDelimiter: rc-
+          closeDelimiter: -prelease
