@@ -14,7 +14,7 @@ const selectedLevel = ref('')
 const selectedDistrcit = ref('')
 const selectedCategory = ref('')
 
-const filteredOffers = $computed(() => {
+const filteredOffers = computed(() => {
   return offers.filter(o => {
     const kind = selectedKind.value === '' || o.kind === selectedKind.value
     const lvl = selectedLevel.value === '' || o.level.includes(selectedLevel.value)
@@ -72,12 +72,10 @@ const category_count = computed(() => {
 
 const district_count = computed(() => {
   return districts.value.reduce((acc, dist) => {
-    acc[dist] = filteredOffers.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
+    acc[dist] = filteredOffers.value.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
     return acc
   }, {})
 })
-
-
 
 </script>
 
@@ -122,7 +120,7 @@ const district_count = computed(() => {
                 :key="i"
                 :value="lvl"
                 active-color="primary"
-                @click="selectedLevel.value == lvl ? selectedLevel.value = '' : selectedLevel.value=lvl"
+                @click="selectedLevel == lvl ? selectedLevel = '' : selectedLevel=lvl"
               >
                 <template v-slot:prepend>
                   <v-icon icon="mdi-license"></v-icon>
@@ -150,7 +148,7 @@ const district_count = computed(() => {
               :key="category.id"
               :value="category.id"
               active-color="primary"
-              @click="selectedCategory.value == category.id ? selectedCategory.value = '' : selectedCategory.value=category.id"
+              @click="selectedCategory == category.id ? selectedCategory = '' : selectedCategory=category.id"
             >
               <WrapperTranslation v-slot="{ translation }" collection="categories" :id="category.id">
                 <v-list-item-title v-text="translation.title"></v-list-item-title>
@@ -178,7 +176,7 @@ const district_count = computed(() => {
               :key="district"
               :value="district"
               active-color="primary"
-              @click="selectedDistrcit.value == district ? selectedDistrcit.value = '' : selectedDistrcit.value=district"
+              @click="selectedDistrcit == district ? selectedDistrcit = '' : selectedDistrcit=district"
             >
               <v-list-item-title v-text="district"></v-list-item-title>
               <template v-if="district_count[district] > 0" v-slot:append>

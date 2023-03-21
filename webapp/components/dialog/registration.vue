@@ -14,7 +14,7 @@ const accepted = useState('accepted',() => false)
 const ages = ['0-17', '18-29', '30-54', '54+']
 const level = ['a0', 'a1', 'a2', 'b1', 'b2', 'c1', 'c2']
 
-const form = $ref({
+const form = ref({
   offer: props.offer,
   first_name: '',
   last_name: '',
@@ -25,10 +25,10 @@ const form = $ref({
 })
 
 async function submit() {
-  const items = new Array(1).fill(form)
-  if (form.last_name === '') return
-  if (!validatePhoneNumber(form.phone)) {
-    form.phone = ''
+  const items = new Array(1).fill(form.value)
+  if (form.value.last_name === '') return
+  if (!validatePhoneNumber(form.value.phone)) {
+    form.value.phone = ''
     return
   }
   await createItems({collection:'registrations', items})

@@ -17,19 +17,19 @@ const props = defineProps({
   }
 })
 
-const member = $computed(() => props.value)
+const member = computed(() => props.value)
 
 const descriptions = await getItems({
   collection: 'junction_directus_users_translations',
   fields: ['languages_code', 'public_description'],
   filter: {
     directus_users_id: {
-      _eq: member.id
+      _eq: member.value.id
     }
   }
 })
 
-const description = $computed(() => descriptions.find((description) => description.languages_code === locale.value).public_description)
+const description = computed(() => descriptions.find((description) => description.languages_code === locale.value).public_description)
 
 
 </script>

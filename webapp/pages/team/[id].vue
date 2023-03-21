@@ -22,7 +22,7 @@ const translations = await getItems({
   }
 })
 
-const translation = $computed(() => translations.find((translation) => translation.languages_code === locale.value))
+const translation = computed(() => translations.find((translation) => translation.languages_code === locale.value))
 
 </script>
 

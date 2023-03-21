@@ -39,8 +39,8 @@ async function getTranslations(collection, id) {
 }
 
 const translations = await getTranslations(props.collection, props.id);
-const found = $computed(() => translations.some((translation) => translation.languages_code === locale.value));
-const translation = $computed(() => translations.find((translation) => translation.languages_code === locale.value));
+const found = computed(() => translations.some((translation) => translation.languages_code === locale.value));
+const translation = computed(() => translations.find((translation) => translation.languages_code === locale.value));
 const fallback = translations.find((translation) => translation.languages_code === props.fallback);
 </script>
 

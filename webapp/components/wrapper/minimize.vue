@@ -2,7 +2,7 @@
 import {useDisplay} from 'vuetify'
 const { mobile } = useDisplay()
 
-const showLevels = $ref(false)
+const showLevels = ref(false)
 </script>
 
 <template>
