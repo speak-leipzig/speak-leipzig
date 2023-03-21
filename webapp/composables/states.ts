@@ -20,3 +20,16 @@ export const useLevel = () => useState('level', () =>
     'all'
   ]
 );
+
+export const useKindsOfOffer = () => useState('kindOfOffer', () =>
+  [
+    {
+      key: 'lang',
+      icon : 'mdi-account-voice',
+    },
+    {
+      key: 'culture',
+      icon : 'mdi-account-group',
+    },
+  ]
+);
