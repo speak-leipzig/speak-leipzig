@@ -4,22 +4,22 @@ const { getItems } = useDirectusItems()
 const level = useLevel()
 
 const kinds = useKindsOfOffer()
-const selectedKind = $ref('')
+const selectedKind = ref('')
 
 const offers = await getItems({
   collection: 'offers'
 });
 
-const selectedLevel = $ref('')
-const selectedDistrcit = $ref('')
-const selectedCategory = $ref('')
+const selectedLevel = ref('')
+const selectedDistrcit = ref('')
+const selectedCategory = ref('')
 
 const filteredOffers = $computed(() => {
   return offers.filter(o => {
-    const kind = selectedKind === '' || o.kind === selectedKind
-    const lvl = selectedLevel === '' || o.level.includes(selectedLevel)
-    const category = selectedCategory === '' || o.category === selectedCategory
-    const distrcit = selectedDistrcit === '' || locations.filter(l => l.id === o.location).map(l => l.district).includes(selectedDistrcit)
+    const kind = selectedKind.value === '' || o.kind === selectedKind.value
+    const lvl = selectedLevel.value === '' || o.level.includes(selectedLevel.value)
+    const category = selectedCategory.value === '' || offers_categories.filter(oc => oc.offers_id === o.id).map(oc => oc.categories_id).includes(selectedCategory.value)
+    const distrcit = selectedDistrcit.value === '' || locations.filter(l => l.id === o.location).map(l => l.district).includes(selectedDistrcit.value)
     return kind && lvl && category && distrcit
   })
 })
@@ -34,6 +34,9 @@ const locations = await getItems({
 
 const categories = await getItems({
   collection: 'categories'
+});
+const offers_categories = await getItems({
+  collection: 'offers_categories'
 });
 
 const districts = $computed(() => {
@@ -53,19 +56,28 @@ function getFacility(offer) {
   return facilities.find(f => f.id === facilityId)
 }
 
-const level_count = $computed(() => {
+const level_count = computed(() => {
   return level.value.reduce((acc, lvl) => {
     acc[lvl] = offers.filter(o => o.level.includes(lvl)).length
     return acc
   }, {})
 })
 
-const district_count = $computed(() => {
-  return districts.reduce((acc, dist) => {
-    acc[dist] = offers.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
+const category_count = computed(() => {
+  return categories.reduce((acc, cat) => {
+    acc[cat.id] = offers.filter(o => offers_categories.filter(oc => oc.offers_id === o.id).map(oc => oc.categories_id).includes(cat.id)).length
     return acc
   }, {})
 })
+
+const district_count = computed(() => {
+  return districts.reduce((acc, dist) => {
+    acc[dist] = filteredOffers.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
+    return acc
+  }, {})
+})
+
+
 
 </script>
 
@@ -81,7 +93,6 @@ const district_count = $computed(() => {
         v-for="offer in filteredOffers"
         :key="offer.id"
       >
-      
         <OfferCard :offer="offer" :facility="getFacility(offer)"/>
       </v-col>
     </v-row>
@@ -111,7 +122,7 @@ const district_count = $computed(() => {
                 :key="i"
                 :value="lvl"
                 active-color="primary"
-                @click="selectedLevel == lvl ? selectedLevel = '' : selectedLevel=lvl"
+                @click="selectedLevel.value == lvl ? selectedLevel.value = '' : selectedLevel.value=lvl"
               >
                 <template v-slot:prepend>
                   <v-icon icon="mdi-license"></v-icon>
@@ -139,17 +150,17 @@ const district_count = $computed(() => {
               :key="category.id"
               :value="category.id"
               active-color="primary"
-              @click="selectedCategory == category.id ? selectedCategory = '' : selectedCategory=category.id"
+              @click="selectedCategory.value == category.id ? selectedCategory.value = '' : selectedCategory.value=category.id"
             >
               <WrapperTranslation v-slot="{ translation }" collection="categories" :id="category.id">
                 <v-list-item-title v-text="translation.title"></v-list-item-title>
               </WrapperTranslation>
-              <template v-slot:append>
-                <v-chip
+              <template v-if="category_count[category.id] > 0" v-slot:append>
+                <v-chip 
                     color="grey-darken-1 mx-2"
                     text-color="white"
                     label
-                  >1
+                  >{{ category_count[category.id] }}
                 </v-chip>
               </template>
             </v-list-item>
@@ -167,7 +178,7 @@ const district_count = $computed(() => {
               :key="district"
               :value="district"
               active-color="primary"
-              @click="selectedDistrcit == district ? selectedDistrcit = '' : selectedDistrcit=district"
+              @click="selectedDistrcit.value == district ? selectedDistrcit.value = '' : selectedDistrcit.value=district"
             >
               <v-list-item-title v-text="district"></v-list-item-title>
               <template v-if="district_count[district] > 0" v-slot:append>
