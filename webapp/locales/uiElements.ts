@@ -25,7 +25,7 @@ export default {
       age: 'Age',
       required: 'Required',
       invalid: 'Invalid',
-      distrcit: 'District',
+      district: 'District',
       contact: 'Contact',
       culture: 'Culture',
   },
