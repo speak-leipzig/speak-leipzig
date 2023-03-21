@@ -12,13 +12,15 @@ const offers = await getItems({
 
 const selectedLevel = $ref('')
 const selectedDistrcit = $ref('')
+const selectedCategory = $ref('')
 
 const filteredOffers = $computed(() => {
   return offers.filter(o => {
     const kind = selectedKind === '' || o.kind === selectedKind
-    const  lvl = selectedLevel === '' || o.level.includes(selectedLevel)
+    const lvl = selectedLevel === '' || o.level.includes(selectedLevel)
+    const category = selectedCategory === '' || o.category === selectedCategory
     const distrcit = selectedDistrcit === '' || locations.filter(l => l.id === o.location).map(l => l.district).includes(selectedDistrcit)
-    return kind && lvl && distrcit
+    return kind && lvl && category && distrcit
   })
 })
 
@@ -135,8 +137,9 @@ const district_count = $computed(() => {
             <v-list-item 
               v-for="category in categories"
               :key="category.id"
+              :value="category.id"
               active-color="primary"
-              @click="console.log('click')"
+              @click="selectedCategory == category.id ? selectedCategory = '' : selectedCategory=category.id"
             >
               <WrapperTranslation v-slot="{ translation }" collection="categories" :id="category.id">
                 <v-list-item-title v-text="translation.title"></v-list-item-title>
