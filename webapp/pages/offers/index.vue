@@ -58,23 +58,42 @@ function getFacility(offer) {
 
 const level_count = computed(() => {
   return level.value.reduce((acc, lvl) => {
-    acc[lvl] = offers.filter(o => o.level.includes(lvl)).length
+    acc[lvl] = offers
+      .filter(o => o.kind === 'lang')
+      .filter(o => o.level.includes(lvl))
+      .length
     return acc
   }, {})
 })
 
 const category_count = computed(() => {
   return categories.reduce((acc, cat) => {
-    acc[cat.id] = offers.filter(o => offers_categories.filter(oc => oc.offers_id === o.id).map(oc => oc.categories_id).includes(cat.id)).length
+    acc[cat.id] = offers
+      .filter(o => o.kind === 'culture')
+      .filter(o => offers_categories
+        .filter(oc => oc.offers_id === o.id)
+        .map(oc => oc.categories_id)
+        .includes(cat.id)
+      ).length
     return acc
   }, {})
 })
 
-const district_count = computed(() => {
+const district_count = computed(() => { //TODO: FilteredOffers
   return districts.value.reduce((acc, dist) => {
-    acc[dist] = filteredOffers.value.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
+    acc[dist] = filteredOffers.value
+      .filter(o => locations
+        .filter(l => l.district === dist)
+        .map(l => l.id)
+        .includes(o.location)
+      ).length
     return acc
   }, {})
+})
+
+watch(selectedKind, () => {
+  if (selectedKind.value !== 'lang') selectedLevel.value = ''
+  if (selectedKind.value !== 'culture') selectedCategory.value = ''
 })
 
 </script>
@@ -94,7 +113,7 @@ const district_count = computed(() => {
         <OfferCard :offer="offer" :facility="getFacility(offer)"/>
       </v-col>
     </v-row>
-
+    
     <template #left>
       <v-list density="compact">
         <v-list-subheader>{{ $t('kind_of_offer') }}</v-list-subheader>
@@ -109,6 +128,14 @@ const district_count = computed(() => {
             <v-icon :icon="kind.icon"></v-icon>
           </template>
           <v-list-item-title v-text="$t(kind.key)"></v-list-item-title>
+          <template v-if="false" v-slot:append>
+            <v-chip
+              color="grey-darken-1 mx-2"
+              text-color="white"
+              label
+            >0
+            </v-chip>
+          </template>
         </v-list-item>
       </v-list>
       <v-expand-transition>
