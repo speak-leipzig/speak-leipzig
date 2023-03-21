@@ -28,6 +28,7 @@ export default {
       district: 'District',
       contact: 'Contact',
       culture: 'Culture',
+      kind_of_offer: 'Kind of Offer',
   },
   de: {
       register: 'Anmelden',
@@ -58,6 +59,7 @@ export default {
       district: 'Stadtteil',
       contact: 'Kontakt',
       culture: 'Kultur',
+      kind_of_offer: 'Art der Angebots',
   },
   ua: {
       register: 'Зареєструватися',
@@ -88,6 +90,7 @@ export default {
       district: 'Район',
       contact: 'Контакт',
       culture: 'Культура',
+      kind_of_offer: 'Вид пропозиції',
   },
   ru: {
       register: 'Зарегистрироваться',
@@ -118,5 +121,6 @@ export default {
       district: 'Район',
       contact: 'Контакт',
       culture: 'Культура',
+      kind_of_offer: 'Вид предложения',
   }
 }
