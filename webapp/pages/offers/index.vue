@@ -39,7 +39,7 @@ const offers_categories = await getItems({
   collection: 'offers_categories'
 });
 
-const districts = $computed(() => {
+const districts = computed(() => {
   return locations
     .filter(
       l => offers //TODO: FilteredOffers
@@ -71,7 +71,7 @@ const category_count = computed(() => {
 })
 
 const district_count = computed(() => {
-  return districts.reduce((acc, dist) => {
+  return districts.value.reduce((acc, dist) => {
     acc[dist] = filteredOffers.filter(o => locations.filter(l => l.district === dist).map(l => l.id).includes(o.location)).length
     return acc
   }, {})
