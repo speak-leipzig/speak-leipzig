@@ -86,7 +86,7 @@ const district_count = $computed(() => {
 
     <template #left>
       <v-list density="compact">
-        <v-list-subheader>Art des Angebots</v-list-subheader>
+        <v-list-subheader>{{ $t('kind_of_offer') }}</v-list-subheader>
         <v-list-item
           v-for="(kind, i) in kinds"
           :key="i"
@@ -130,7 +130,7 @@ const district_count = $computed(() => {
       </v-expand-transition>
       <v-expand-transition>
         <v-list v-if="selectedKind === 'culture'" density="compact">
-          <v-list-subheader>{{ $t('kind_of_offer') }}</v-list-subheader>
+          <v-list-subheader>Kategorien</v-list-subheader>
           <WrapperMinimize>
             <v-list-item 
               v-for="category in categories"
