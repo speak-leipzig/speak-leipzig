@@ -27,6 +27,7 @@ export default {
       invalid: 'Invalid',
       distrcit: 'District',
       contact: 'Contact',
+      culture: 'Culture',
   },
   de: {
       register: 'Anmelden',
@@ -56,6 +57,7 @@ export default {
       invalid: 'Ungültig',
       district: 'Stadtteil',
       contact: 'Kontakt',
+      culture: 'Kultur',
   },
   ua: {
       register: 'Зареєструватися',
@@ -85,6 +87,7 @@ export default {
       invalid: 'Невірно',
       district: 'Район',
       contact: 'Контакт',
+      culture: 'Культура',
   },
   ru: {
       register: 'Зарегистрироваться',
@@ -114,5 +117,6 @@ export default {
       invalid: 'Неверно',
       district: 'Район',
       contact: 'Контакт',
+      culture: 'Культура',
   }
 }
