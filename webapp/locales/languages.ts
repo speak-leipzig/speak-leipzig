@@ -1,7 +1,7 @@
 export default {
   en: {
-    lang: 'language',
-    langs: 'languages',
+    lang: 'Language',
+    langs: 'Languages',
     en: 'English',
     de: 'German',
     ua: 'Ukrainian',
@@ -16,16 +16,16 @@ export default {
     ru: 'Russisch',
   },
   ua: {
-    lang: 'мова',
-    langs: 'мови',
+    lang: 'Мова',
+    langs: 'Мови',
     en: 'Англійська',
     de: 'Німецька',
     ua: 'Українська',
     ru: 'Російська',
   },
   ru: {
-    lang: 'язык',
-    langs: 'языки',
+    lang: 'Язык',
+    langs: 'Языки',
     en: 'Английский',
     de: 'Немецкий',
     ua: 'Украинский',
