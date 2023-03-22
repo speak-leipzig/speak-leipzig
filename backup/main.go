@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	pg "github.com/habx/pg-commands"
 )
@@ -12,14 +13,14 @@ import (
 const (
 	Port     = 8080
 	path     = "/backups/"
-	filename = "dump.sql"
+	filename = "dump"
 )
 
 func main() {
 	var dumpExec *pg.Result = nil
 
 	postgres := NewPostgres("DB_HOST", "DB_PORT", "DB_DATABASE", "DB_USER", "DB_PASSWORD")
-	dump := NewDump(postgres, path, filename)
+	dump := NewDump(postgres, path, "")
 	restore := NewRestore(postgres, path)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -31,6 +32,8 @@ func main() {
 	})
 
 	http.HandleFunc("/dump", func(w http.ResponseWriter, r *http.Request) {
+		dt := time.Now()
+		dump.SetFileName(fmt.Sprintf("%s_%s.sql", filename, dt.Format("2006-01-02_15-04-05")))
 		WriteString(w, "Dumping database...")
 		dumpExec = ExecDump(w, dump)
 	})

@@ -13,7 +13,10 @@ func NewDump(postgres *pg.Postgres, path string, filename string) *pg.Dump {
 		panic("Error while creating dump: " + err.Error())
 	}
 	dump.SetPath(path)
-	dump.SetFileName(filename)
+
+	if filename != "" {
+		dump.SetFileName(filename)
+	}
 
 	return dump
 }
