@@ -10,26 +10,16 @@ import (
 )
 
 const (
-	Port = 8080
-	path = "/backups/"
+	Port     = 8080
+	path     = "/backups/"
+	filename = "dump.sql"
 )
 
 func main() {
 	var dumpExec *pg.Result = nil
-	port, err := strconv.Atoi(os.Getenv("DB_PORT"))
-	if err != nil {
-		panic(err)
-	}
 
-	postgres := &pg.Postgres{
-		Host:     os.Getenv("DB_HOST"),
-		Port:     port,
-		DB:       os.Getenv("DB_DATABASE"),
-		Username: os.Getenv("DB_USER"),
-		Password: os.Getenv("DB_PASSWORD"),
-	}
-
-	dump := NewDump(postgres, path, "dump.sql")
+	postgres := NewPostgres("DB_HOST", "DB_PORT", "DB_DATABASE", "DB_USER", "DB_PASSWORD")
+	dump := NewDump(postgres, path, filename)
 	restore := NewRestore(postgres, path)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -55,9 +45,24 @@ func main() {
 	})
 
 	fmt.Printf("Listening on port %d\n", Port)
-	err = http.ListenAndServe(fmt.Sprintf(":%d", Port), nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", Port), nil)
 	if err != nil {
 		panic(err)
+	}
+}
+
+func NewPostgres(host, port, db, user, password string) *pg.Postgres {
+	porttoi, err := strconv.Atoi(os.Getenv(port))
+	if err != nil {
+		panic(err)
+	}
+
+	return &pg.Postgres{
+		Host:     os.Getenv(host),
+		Port:     porttoi,
+		DB:       os.Getenv(db),
+		Username: os.Getenv(user),
+		Password: os.Getenv(password),
 	}
 }
 
