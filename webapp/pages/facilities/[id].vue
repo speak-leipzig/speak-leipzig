@@ -9,6 +9,17 @@ const facility = await getItemById({
   id: route.params.id
 })
 
+const offers = await getItems({
+  collection: 'offers',
+  params: {
+    filter: {
+      location: {
+        _in: facility.locations
+      }
+    }
+  }
+})
+
 const locations = await getItems({
   collection: 'locations',
   params: {
@@ -24,6 +35,8 @@ function gMapsLink() {
   const { street, no, zip, city } = location
   return getGMapsLink(street, no, zip, city)
 }
+
+const window = ref(0)
 
 </script>
 
@@ -45,6 +58,18 @@ function gMapsLink() {
         <span v-html="translation.text"></span>
       </WrapperTranslation>
     </div>
+
+    <v-no-ssr>
+      <v-row class="my-10" width="100%">
+        <v-col cols="12" sm="12" md="6" lg="6" xl="4"
+          v-for="offer in offers"
+          :key="offer.id"
+        >
+          <OfferCard :offer="offer" :facility="facility"/>
+        </v-col>
+      </v-row>
+    </v-no-ssr>
+
     <template #left v-if="facility.web || false">
       <v-card elevation="0">
         <v-card-title class="mt-2">
