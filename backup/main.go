@@ -2,70 +2,102 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
-	"os"
-	"strconv"
-	"time"
 
 	pg "github.com/habx/pg-commands"
 )
 
 const (
-	Port     = 8080
-	path     = "/backups/"
-	filename = "dump"
+	Port          = 8080
+	path          = "/backups/"
+	basicFilename = "dump"
 )
 
 func main() {
-	var dumpExec *pg.Result = nil
+	db := NewPostgres("DB_HOST", "DB_PORT", "DB_DATABASE", "DB_USER", "DB_PASSWORD")
+	dump := NewDump(db, path, "")
+	restore := NewRestore(db, path)
 
-	postgres := NewPostgres("DB_HOST", "DB_PORT", "DB_DATABASE", "DB_USER", "DB_PASSWORD")
-	dump := NewDump(postgres, path, "")
-	restore := NewRestore(postgres, path)
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "I'm a backup server!")
-	})
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 
 	http.HandleFunc("/getenv", func(w http.ResponseWriter, r *http.Request) {
-		getenv(w, postgres)
+		getenv(w, db)
 	})
 
 	http.HandleFunc("/dump", func(w http.ResponseWriter, r *http.Request) {
-		dt := time.Now()
-		dump.SetFileName(fmt.Sprintf("%s_%s.sql", filename, dt.Format("2006-01-02_15-04-05")))
-		WriteString(w, "Dumping database...")
-		dumpExec = ExecDump(w, dump)
+		filename := NewFilename()
+		dump.SetFileName(filename)
+		WriteString(w, "Dumping database to "+filename+"...")
+		res := ExecDump(w, dump)
+		if res.Error != nil {
+			WriteString(w, "Dump failed")
+			return
+		}
+	})
+
+	http.HandleFunc("/backups/", func(w http.ResponseWriter, r *http.Request) {
+		files, err := ioutil.ReadDir(path)
+		if err != nil {
+			WriteString(w, "Error while reading directory: "+err.Error())
+			return
+		}
+
+		if len(files) == 0 {
+			WriteString(w, "No backup found")
+			return
+		}
+
+		linklist := make(MultiLinkList, len(files))
+		for i, f := range files {
+			linklist[i] = MultiLink{HrefMain: "/download?filename=" + f.Name(), TextMain: f.Name(), HrefSub: "/restore?filename=" + f.Name(), TextSub: "Restore"}
+		}
+		WrapperHtml(w, r, linklist.ToHtml)
+	})
+
+	http.HandleFunc("/list", func(w http.ResponseWriter, r *http.Request) {
+		files, err := ioutil.ReadDir(path)
+		if err != nil {
+			WriteString(w, "Error while reading directory: "+err.Error())
+			return
+		}
+
+		if len(files) == 0 {
+			WriteString(w, "No backup found")
+			return
+		}
+
+		// list all files as json
+		list := make(List, len(files))
+		for i, f := range files {
+			list[i] = f.Name()
+		}
+		list.ToJson(w, r)
 	})
 
 	http.HandleFunc("/restore", func(w http.ResponseWriter, r *http.Request) {
-		if dumpExec == nil {
-			WriteString(w, "No dump to restore")
+		filename := r.URL.Query().Get("filename")
+		if filename == "" {
+			WriteString(w, "No filename given")
 			return
 		}
 		fmt.Println("Restoring database...")
-		ExecRestore(w, dumpExec, restore)
+		ExecRestore(w, filename, restore)
+	})
+
+	http.HandleFunc("/download", func(w http.ResponseWriter, r *http.Request) {
+		filename := r.URL.Query().Get("filename")
+		if filename == "" {
+			WriteString(w, "No filename given")
+			return
+		}
+		http.ServeFile(w, r, path+filename)
 	})
 
 	fmt.Printf("Listening on port %d\n", Port)
 	err := http.ListenAndServe(fmt.Sprintf(":%d", Port), nil)
 	if err != nil {
 		panic(err)
-	}
-}
-
-func NewPostgres(host, port, db, user, password string) *pg.Postgres {
-	porttoi, err := strconv.Atoi(os.Getenv(port))
-	if err != nil {
-		panic(err)
-	}
-
-	return &pg.Postgres{
-		Host:     os.Getenv(host),
-		Port:     porttoi,
-		DB:       os.Getenv(db),
-		Username: os.Getenv(user),
-		Password: os.Getenv(password),
 	}
 }
 

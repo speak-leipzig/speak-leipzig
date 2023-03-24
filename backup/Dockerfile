@@ -11,6 +11,7 @@ COPY go.sum ./
 RUN go mod download
 
 COPY *.go ./
+COPY ./static ./static
 
 RUN go build -o /docker-sql-backup
 

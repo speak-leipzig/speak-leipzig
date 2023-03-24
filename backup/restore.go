@@ -16,8 +16,8 @@ func NewRestore(postgres *pg.Postgres, path string) *pg.Restore {
 	return restore
 }
 
-func ExecRestore(w http.ResponseWriter, dumpExec *pg.Result, r *pg.Restore) *pg.Result {
-	restoreExec := r.Exec(dumpExec.File, pg.ExecOptions{StreamPrint: false})
+func ExecRestore(w http.ResponseWriter, file string, r *pg.Restore) *pg.Result {
+	restoreExec := r.Exec(file, pg.ExecOptions{StreamPrint: false})
 	if restoreExec.Error != nil {
 		fmt.Println(restoreExec.Error.Err)
 		fmt.Println(restoreExec.Output)
