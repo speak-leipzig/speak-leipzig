@@ -16,7 +16,7 @@ func WriteString(w http.ResponseWriter, s string) {
 	fmt.Println(s)
 }
 
-func NewFilename() string {
+func NewFilename(basicFilename string) string {
 	dt := time.Now()
 	return fmt.Sprintf("%s_%s.sql", basicFilename, dt.Format("2006-01-02_15-04-05"))
 }
