@@ -23,7 +23,11 @@ export default defineNuxtConfig({
         { name: 'msapplication-TileColor', content: '#ffffff' },
         { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' },
         { name: 'theme-color', content: '#ffffff' },
-      ]
+      ],
+      link: [
+        { rel: 'manifest', href: '/app.webmanifest' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/icon/apple-touch-icon.png' },
+      ],
     }
   },
   i18n: {
