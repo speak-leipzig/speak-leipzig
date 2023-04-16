@@ -7,6 +7,11 @@ export default {
     fr: 'friday',
     sa: 'saturday',
     so: 'sunday',
+    weekly: 'weekly',
+    monthly: 'monthly',
+    yearly: 'yearly',
+    daily: 'daily',
+    biweekly: 'biweekly',
   },
   de: {
     mo: 'Montag',
@@ -16,6 +21,11 @@ export default {
     fr: 'Freitag',
     sa: 'Samstag',
     so: 'Sonntag',
+    weekly: 'wöchentlich',
+    monthly: 'monatlich',
+    yearly: 'jährlich',
+    daily: 'täglich',
+    biweekly: 'zweiwöchentlich',
   },
   ua: {
     mo: 'понеділок',
@@ -25,6 +35,11 @@ export default {
     fr: 'п\'ятниця',
     sa: 'субота',
     so: 'неділя',
+    weekly: 'щотижня',
+    monthly: 'щомісяця',
+    yearly: 'щорічно',
+    daily: 'щодня',
+    biweekly: 'щодвохтижнів',
   },
   ru: {
     mo: 'понедельник',
@@ -34,5 +49,10 @@ export default {
     fr: 'пятница',
     sa: 'суббота',
     so: 'воскресенье',
+    weekly: 'еженедельно',
+    monthly: 'ежемесячно',
+    yearly: 'ежегодно',
+    daily: 'ежедневно',
+    biweekly: 'раз в две недели',
   }
 }
