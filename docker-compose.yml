@@ -39,11 +39,17 @@ services:
       - '${PORTBASE}55:8055'
     volumes:
       - uploads:/directus/uploads
+      - ${EXTENSION_VOLUME}:/directus/extensions
     networks:
       - directus
     depends_on:
       - cache
       - database
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8055"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
     environment:
       KEY: '${KEY}'
       SECRET: '${SECRET}'
@@ -79,9 +85,20 @@ services:
       # (see https://docs.directus.io/reference/environment-variables/#general)
       PUBLIC_URL: 'https://${PUBLIC_URL}'
 
+      EXTENSIONS_AUTO_RELOAD: "true"
+
+  extension-builder:
+    image: extension-builder:rc-_-demo
+    build: ./extensions
+    volumes:
+      - extensions:/dist
+    depends_on:
+      - directus
+
 networks:
   directus:
 
 volumes:
   uploads:
   db:
+  extensions:
