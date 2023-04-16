@@ -68,14 +68,12 @@ function gMapsLink() {
                   </span>
                 </v-list-item-title>
               </v-list-item>
-              <WrapperTranslation v-slot="{ translation }" collection="offers" :id="route.params.id">
-                <v-list-item v-if="translation.rhythm" class="mb-n3">
-                  <v-list-item-title>
-                    <v-icon v-if="lgAndUp || mobile">mdi-calendar-sync</v-icon> 
-                    {{ translation.rhythm }}
-                  </v-list-item-title>
-                </v-list-item>
-              </WrapperTranslation>
+              <v-list-item class="mb-n3">
+                <v-list-item-title>
+                  <v-icon v-if="lgAndUp || mobile">mdi-calendar-sync</v-icon> 
+                  {{ $t(offer.rhythm) }}
+                </v-list-item-title>
+              </v-list-item>
               <div v-if="offer.weekday && offer.show_weekday">
                 <v-list-item class="my-2">
                   <v-list-item-title>
