@@ -13,6 +13,15 @@ const offer = await getItemById({
   id: route.params.id
 })
 
+const getEvents = async () => {
+  if (!offer.events) return null
+  return await getItemById({
+  collection: 'events',
+  id: offer.events
+})}
+const events = await getEvents()
+console.log(events) // TODO: fix
+
 const getLocation = async () =>{
   if (!offer.location) return null
   return await getItemById({
@@ -47,6 +56,30 @@ function gMapsLink() {
     <v-no-ssr>
       <DialogRegistration v-if="offer.allow_registrations" :offer="route.params.id" class="my-3"></DialogRegistration>
     </v-no-ssr>
+
+    <v-table>
+      <thead>
+        <tr>
+          <th class="text-left">
+            {{ $t('date') }}
+          </th>
+          <th class="text-left">
+            Calories
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="event in events"
+          :key="event.id"
+        >
+          <td>{{ event.date }}</td>
+          <td>{{ event.date }}</td>
+        </tr>
+      </tbody>
+    </v-table>
+      
+    <!-- QuickInfos -->
     <template #left v-if="facility || offer.weekday">
       <v-no-ssr>
         <v-card elevation="0">
@@ -112,6 +145,8 @@ function gMapsLink() {
         </v-card>
       </v-no-ssr>
     </template>
+
+    <!-- Location -->
     <template #right v-if="offer.location && !offer.online">
       <v-card elevation="0" rounded="5" :href="gMapsLink()">
         <v-img
