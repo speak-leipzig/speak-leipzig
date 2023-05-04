@@ -4,8 +4,11 @@ import { getGMapsLink } from '~~/utils/gmaps';
 
 const route = useRoute()
 const router = useRouter()
+
+const { locales, locale } = useI18n()
+
 const { getThumbnail: img } = useDirectusFiles()
-const { getItemById } = useDirectusItems()
+const { getItems, getItemById } = useDirectusItems()
 const { lgAndUp, mobile } = useDisplay()
 
 const offer = await getItemById({
@@ -15,20 +18,26 @@ const offer = await getItemById({
 
 const getEvents = async () => {
   if (!offer.events) return null
-  return await getItemById({
-  collection: 'events',
-  id: offer.events
-})}
+  return await getItems({
+    collection: 'events',
+    params: {
+      filter: {
+        offer: {
+          _in: offer.id
+        }
+      }
+    }
+  })
+}
 const events = await getEvents()
-console.log(events) // TODO: fix
 
-const getLocation = async () =>{
+const getLocation = async (id) => {
   if (!offer.location) return null
   return await getItemById({
   collection: 'locations',
-  id: offer.location
+  id: id
 })}
-const location = await getLocation()
+const location = await getLocation(offer.location)
 
 const getFacility = async () => {
   if (!location?.facility && !offer.facility) return null
@@ -42,6 +51,25 @@ function gMapsLink() {
   const { street, no, zip, city } = location
   return getGMapsLink(street, no, zip, city)
 }
+
+const iso = computed(() => locales.value.find(loc => loc.code == locale.value).iso)
+
+function dateString(date) {
+  return new Date(date).toLocaleDateString(iso, { 
+    year: '2-digit', 
+    month: '2-digit', 
+    day: '2-digit' 
+  })
+}
+
+function timeString(time) {
+  return new Date(new Date().getDate() + ' ' + time).toLocaleTimeString(iso, { 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    hour12: false
+  })
+}
+
 </script>
 
 <template>
@@ -55,30 +83,51 @@ function gMapsLink() {
     </WrapperTranslation>
     <v-no-ssr>
       <DialogRegistration v-if="offer.allow_registrations" :offer="route.params.id" class="my-3"></DialogRegistration>
+      <div class="d-flex justify-center my-10">
+        <v-table style="max-width: 900px; width: 80%;">
+          <thead>
+            <tr>
+              <th class="text-center">
+                {{ $t('date') }}
+              </th>
+              <th class="text-center">
+                {{ $t('time') }}
+              </th>
+              <th class="text-center">
+                {{ $t('location') }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="event in events"
+              :key="event.id"
+            >
+              <td class="text-center">
+                <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
+                {{ dateString(event.date) }}
+              </td>
+              <td class="text-center">
+                <v-icon v-if="lgAndUp || mobile">mdi-clock-outline</v-icon>
+                {{ event.start ? timeString(event.start) : '-' }} - {{ event.end ? timeString(event.end) : '' }}
+              </td>
+              <td class="text-center">
+                <v-btn
+                  v-if="location"
+                  :href="gMapsLink()"
+                  target="_blank"
+                  class="mx-auto"
+                  variant="text"
+                  prepend-icon="mdi-map-marker"
+                >
+                  {{ location.name }}
+                </v-btn>
+              </td>
+            </tr>
+          </tbody>
+        </v-table>
+      </div>
     </v-no-ssr>
-
-    <v-table>
-      <thead>
-        <tr>
-          <th class="text-left">
-            {{ $t('date') }}
-          </th>
-          <th class="text-left">
-            Calories
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="event in events"
-          :key="event.id"
-        >
-          <td>{{ event.date }}</td>
-          <td>{{ event.date }}</td>
-        </tr>
-      </tbody>
-    </v-table>
-      
     <!-- QuickInfos -->
     <template #left v-if="facility || offer.weekday">
       <v-no-ssr>
