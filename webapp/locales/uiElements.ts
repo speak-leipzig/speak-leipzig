@@ -29,6 +29,7 @@ export default {
       contact: 'Contact',
       culture: 'Culture',
       kind_of_offer: 'Kind of Offer',
+      location: 'location',
   },
   de: {
       register: 'Anmelden',
@@ -60,6 +61,7 @@ export default {
       contact: 'Kontakt',
       culture: 'Kultur',
       kind_of_offer: 'Art der Angebots',
+      location: 'Standort',
   },
   ua: {
       register: 'Зареєструватися',
@@ -91,6 +93,7 @@ export default {
       contact: 'Контакт',
       culture: 'Культура',
       kind_of_offer: 'Вид пропозиції',
+      location: 'Місцезнаходження',
   },
   ru: {
       register: 'Зарегистрироваться',
@@ -122,5 +125,6 @@ export default {
       contact: 'Контакт',
       culture: 'Культура',
       kind_of_offer: 'Вид предложения',
+      location: 'Местоположение',
   }
 }
