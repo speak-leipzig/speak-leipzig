@@ -1,5 +1,7 @@
 export default {
   en: {
+    date: 'date',
+    time: 'time',
     mo: 'monday',
     di: 'tuesday',
     mi: 'wednesday',
@@ -12,8 +14,12 @@ export default {
     yearly: 'yearly',
     daily: 'daily',
     biweekly: 'biweekly',
+    start: 'start',
+    end: 'end',
   },
   de: {
+    date: 'Datum',
+    time: 'Zeit',
     mo: 'Montag',
     di: 'Dienstag',
     mi: 'Mittwoch',
@@ -26,8 +32,12 @@ export default {
     yearly: 'jährlich',
     daily: 'täglich',
     biweekly: 'zweiwöchentlich',
+    start: 'Start',
+    end: 'Ende',
   },
   ua: {
+    date: 'дата',
+    time: 'час',
     mo: 'понеділок',
     di: 'вівторок',
     mi: 'середа',
@@ -40,8 +50,12 @@ export default {
     yearly: 'щорічно',
     daily: 'щодня',
     biweekly: 'щодвохтижнів',
+    start: 'початок',
+    end: 'кінець',
   },
   ru: {
+    date: 'дата',
+    time: 'время',
     mo: 'понедельник',
     di: 'вторник',
     mi: 'среда',
@@ -54,5 +68,7 @@ export default {
     yearly: 'ежегодно',
     daily: 'ежедневно',
     biweekly: 'раз в две недели',
+    start: 'начало',
+    end: 'конец',
   }
 }
