@@ -1,7 +1,7 @@
 version: '3'
 services:
   webapp-demo:
-    image: webapp:rc-03.21.22.36-demo
+    image: webapp:rc-04.03.22.15-demo
     build: ./webapp
     ports:
       - '${PORTBASE}81:3000'
@@ -39,17 +39,11 @@ services:
       - '${PORTBASE}55:8055'
     volumes:
       - uploads:/directus/uploads
-      - ${EXTENSION_VOLUME}:/directus/extensions
     networks:
       - directus
     depends_on:
       - cache
       - database
-    healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:8055"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
     environment:
       KEY: '${KEY}'
       SECRET: '${SECRET}'
@@ -69,7 +63,7 @@ services:
 
       ADMIN_EMAIL: '${ADMIN_EMAIL}'
       ADMIN_PASSWORD: '${ADMIN_PASSWORD}'
-
+      
       EMAIL_FROM: '${EMAIL_FROM}'
       EMAIL_TRANSPORT: smtp
       EMAIL_SMTP_HOST: '${EMAIL_SMTP_HOST}'
@@ -78,17 +72,16 @@ services:
       EMAIL_SMTP_PASSWORD: '${EMAIL_SMTP_PASSWORD}'
       EMAIL_SMTP_POOL: "false"
       EMAIL_SMTP_SECURE: "false"
-
+      
       REFRESH_TOKEN_COOKIE_SAME_SITE: '${REFRESH_TOKEN_COOKIE_SAME_SITE}'
       REFRESH_TOKEN_COOKIE_SECURE: '${REFRESH_TOKEN_COOKIE_SECURE}'
       # Make sure to set this in production
       # (see https://docs.directus.io/reference/environment-variables/#general)
       PUBLIC_URL: 'https://${PUBLIC_URL}'
 
-      EXTENSIONS_AUTO_RELOAD: "true"
+networks:
+  directus:
 
-  extension-builder:
-    image: extension-builder:rc-_-demo
-    build: ./extensions
-    volumes:
-      - extensions:/dist
+volumes:
+  uploads:
+  db:
