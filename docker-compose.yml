@@ -1,14 +1,14 @@
 version: '3'
 services:
   webapp-demo:
-    image: webapp:rc-05.04.23.29-demo
+    image: webapp:rc-05.04.23.37-demo
     build: ./webapp
     ports:
       - '${PORTBASE}81:3000'
     restart: always
 
   webapp-prelease:
-    image: webapp:rc-05.04.23.29-demo
+    image: webapp:rc-05.04.23.37-demo
     build: ./extensions
     volumes:
       - extensions:/dist
