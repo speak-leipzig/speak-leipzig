@@ -2,6 +2,13 @@
 import {useDisplay} from 'vuetify'
 const { mobile } = useDisplay()
 
+const props = defineProps({
+  mobile_only: {
+    type: Boolean,
+    default: true
+  }
+})
+
 const showLevels = ref(false)
 </script>
 
