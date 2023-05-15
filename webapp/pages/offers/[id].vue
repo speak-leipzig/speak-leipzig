@@ -90,12 +90,15 @@ function timeString(time) {
               <thead>
                 <tr>
                   <th class="text-center">
+                    <v-icon v-if="lgAndUp">mdi-calendar</v-icon>
                     {{ $t('date') }}
                   </th>
                   <th class="text-center">
+                    <v-icon v-if="lgAndUp">mdi-clock-outline</v-icon>
                     {{ $t('time') }}
                   </th>
                   <th class="text-center">
+                    <v-icon v-if="lgAndUp">mdi-map-marker</v-icon>
                     {{ $t('location') }}
                   </th>
                 </tr>
@@ -106,11 +109,9 @@ function timeString(time) {
                   :key="event.id"
                 >
                   <td class="text-center">
-                    <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
                     {{ dateString(event.date) }}
                   </td>
                   <td class="text-center">
-                    <v-icon v-if="lgAndUp || mobile">mdi-clock-outline</v-icon>
                     {{ event.start ? timeString(event.start) : '-' }} - {{ event.end ? timeString(event.end) : '' }}
                   </td>
                   <td class="text-center">
@@ -120,7 +121,6 @@ function timeString(time) {
                       target="_blank"
                       class="mx-auto"
                       variant="text"
-                      prepend-icon="mdi-map-marker"
                     >
                       {{ location.name }}
                     </v-btn>
