@@ -83,50 +83,54 @@ function timeString(time) {
     </WrapperTranslation>
     <v-no-ssr>
       <DialogRegistration v-if="offer.allow_registrations" :offer="route.params.id" class="my-3"></DialogRegistration>
-      <div class="d-flex justify-center my-10">
-        <v-table style="max-width: 900px; width: 80%;">
-          <thead>
-            <tr>
-              <th class="text-center">
-                {{ $t('date') }}
-              </th>
-              <th class="text-center">
-                {{ $t('time') }}
-              </th>
-              <th class="text-center">
-                {{ $t('location') }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="event in events"
-              :key="event.id"
-            >
-              <td class="text-center">
-                <v-icon v-if="lgAndUp || mobile">mdi-calendar</v-icon>
-                {{ dateString(event.date) }}
-              </td>
-              <td class="text-center">
-                <v-icon v-if="lgAndUp || mobile">mdi-clock-outline</v-icon>
-                {{ event.start ? timeString(event.start) : '-' }} - {{ event.end ? timeString(event.end) : '' }}
-              </td>
-              <td class="text-center">
-                <v-btn
-                  v-if="location"
-                  :href="gMapsLink()"
-                  target="_blank"
-                  class="mx-auto"
-                  variant="text"
-                  prepend-icon="mdi-map-marker"
+      <v-expand-transition>
+        <WrapperMinimize>
+          <div  class="d-flex justify-center my-10">
+            <v-table style="max-width: 900px; width: 80%;">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    <v-icon v-if="lgAndUp">mdi-calendar</v-icon>
+                    {{ $t('date') }}
+                  </th>
+                  <th class="text-center">
+                    <v-icon v-if="lgAndUp">mdi-clock-outline</v-icon>
+                    {{ $t('time') }}
+                  </th>
+                  <th class="text-center">
+                    <v-icon v-if="lgAndUp">mdi-map-marker</v-icon>
+                    {{ $t('location') }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="event in events"
+                  :key="event.id"
                 >
-                  {{ location.name }}
-                </v-btn>
-              </td>
-            </tr>
-          </tbody>
-        </v-table>
-      </div>
+                  <td class="text-center">
+                    {{ dateString(event.date) }}
+                  </td>
+                  <td class="text-center">
+                    {{ event.start ? timeString(event.start) : '-' }} - {{ event.end ? timeString(event.end) : '' }}
+                  </td>
+                  <td class="text-center">
+                    <v-btn
+                      v-if="location"
+                      :href="gMapsLink()"
+                      target="_blank"
+                      class="mx-auto"
+                      variant="text"
+                    >
+                      {{ location.name }}
+                    </v-btn>
+                  </td>
+                </tr>
+              </tbody>
+            </v-table>
+          </div>
+        </WrapperMinimize>
+      </v-expand-transition>
     </v-no-ssr>
     <!-- QuickInfos -->
     <template #left v-if="facility || offer.weekday">

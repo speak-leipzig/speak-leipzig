@@ -2,6 +2,7 @@
 import messages from './locales/.merge'
 
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   ssr: true,
   routeRules: {
     '*/offers': {ssr: false},
@@ -11,7 +12,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/i18n',
-    'nuxt-directus'
+    '@vue-macros/nuxt',
+    'nuxt-directus',
   ],
   app: {
     head:{
@@ -58,9 +60,6 @@ export default defineNuxtConfig({
     'vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',
   ],
-  experimental: {
-    reactivityTransform: true
-  },
   build: {
     transpile: ['vuetify'],
   },
@@ -68,5 +67,12 @@ export default defineNuxtConfig({
     define: {
       'process.env.DEBUG': false,
     },
-  }
+  },
+  imports: {
+    autoImport: true,
+    addons: {
+      vueTemplate: true
+    },
+    dirs: ["stores", "types"],
+  },
 })
